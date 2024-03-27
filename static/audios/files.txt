@@ -1,0 +1,284 @@
+FOLDER	audios
+FOLDER	MTA
+FILE	bound.wav
+FILE	line.wav
+FILE	local train.wav
+FILE	The next and last stop is.wav
+FILE	The next stop is v1.wav
+FILE	The next stop is v2.wav
+FILE	The next stop is v3.wav
+FILE	This is an.wav
+FILE	This is the last stop on the train. Please exit onto the platform so the train can get cleaned and get moving again.wav
+FILE	This is.wav
+FILE	This train is being diverted off is regular route. Please listen for train crew announcements.wav
+FILE	This train will be taken out of service at the next station. Please exit the train.wav
+FILE	Transfer is available to the.wav
+FILE	via the.wav
+FILE	via.wav
+FILE	Wear a mask.wav
+FOLDER	Destination
+FILE	Coney Island-bound.wav
+FILE	This is a Brooklyn-bound E local train.wav
+FILE	This is a Brooklyn-bound J local train.wav
+FILE	This is a Brooklyn-bound J train.wav
+FILE	This is a Brooklyn-bound.wav
+FILE	This is a Jamaica Center-bound E local train.wav
+FILE	This is a Jamaica Center-Parsons Archer-bound M train via the J line.wav
+FILE	This is a Jamaica Center-Parsons Archer-bound.wav
+FILE	This is a Jamaica-179 St-bound F express train.wav
+FILE	This is a Jamaica-179 St-bound F local train.wav
+FILE	This is a Manhattan-bound E express train.wav
+FILE	This is a Manhattan-bound E local train.wav
+FILE	This is a Manhattan-bound J express train.wav
+FILE	This is a Manhattan-bound J train.wav
+FILE	This is a Manhattan-bound v2.wav
+FILE	This is a Manhattan-bound.wav
+FILE	This is a Middle Village-Metropolitan Av-bound J local train via the M line.wav
+FILE	This is a Middle Village-Metropolitan Av-bound.wav
+FILE	This is a Queens-bound J local train via the M line.wav
+FILE	This is a Queens-bound J local train.wav
+FILE	This is a Queens-bound M local train.wav
+FILE	This is a Queens-bound M train via the J line.wav
+FILE	This is a World Trade Center-bound E train.wav
+FILE	This is a World Trade Center-bound.wav
+FILE	via the 6 Av line.wav
+FILE	via the A line.wav
+FILE	via the F line.wav
+FILE	via the J line.wav
+FILE	via the N line.wav
+TOTAL	Destination\
+FOLDER	Interchanges
+FILE	Connection is available to GWB.wav
+FILE	Connection is available to LIRR, NJ Transit and Amtrak.wav
+FILE	Connection is available to LIRR.wav
+FILE	Connection is available to PATH trains.wav
+FILE	Connection is available to PATH.wav
+FILE	Connection is available to the LIRR and Airtrain to JFK airport.wav
+FILE	Connection is available to the PATH trains.wav
+FILE	Connection is available to the Port Authority Bus Terminal.wav
+FILE	Connection is available to the Q33 bus to LaGuardia Airport.wav
+FILE	Transfer is available to the 1, 2, 3, 7, A, C, N, Q and R trains, and shuttle Grand Central.wav
+FILE	Transfer is available to the 1, A, C and D trains.wav
+FILE	Transfer is available to the 2, 3, 4, 5 and R trains.wav
+FILE	Transfer is available to the 2, 3, 4, 5, A and C trains.wav
+FILE	Transfer is available to the 2, 3, 4, 5, B, D, N, Q and R trains.wav
+FILE	Transfer is available to the 2, 3, A, C and R trains.wav
+FILE	Transfer is available to the 4, 5 and 6 trains.wav
+FILE	Transfer is available to the 4, 6, D and F trains.wav
+FILE	Transfer is available to the 6 train.wav
+FILE	Transfer is available to the 6, N, Q, R and W trains.wav
+FILE	Transfer is available to the 7 and G trains.wav
+FILE	Transfer is available to the 7, E and G trains.wav
+FILE	Transfer is available to the 7, E, G and R trains.wav
+FILE	Transfer is available to the 7, E, G, R and V trains. Transfer is available to the Q33 and Q47 buses to LaGuardia Airport.wav
+FILE	Transfer is available to the 7, F and R trains.wav
+FILE	Transfer is available to the A and C trains.wav
+FILE	Transfer is available to the A, C and D trains.wav
+FILE	Transfer is available to the A, C and L trains.wav
+FILE	Transfer is available to the A, C, D and F trains.wav
+FILE	Transfer is available to the A, C, D, F and M trains.wav
+FILE	Transfer is available to the A, C, F and R trains.wav
+FILE	Transfer is available to the B and Q trains.wav
+FILE	Transfer is available to the B44 SBS.wav
+FILE	Transfer is available to the Brooklyn-bound C train.wav
+FILE	Transfer is available to the D, F, N and Q trains.wav
+FILE	Transfer is available to the D, F, N, Q and R trains.wav
+FILE	Transfer is available to the E train.wav
+FILE	Transfer is available to the F and G trains.wav
+FILE	Transfer is available to the F and M trains. Transfer is also available to the M14 SBS.wav
+FILE	Transfer is available to the F and M trains.wav
+FILE	Transfer is available to the F and R trains.wav
+FILE	Transfer is available to the F train and the M15 SBS.wav
+FILE	Transfer is available to the F train.wav
+FILE	Transfer is available to the J and Z trains.wav
+FILE	Transfer is available to the J train.wav
+FILE	Transfer is available to the L train.wav
+FILE	Transfer is available to the M train.wav
+FILE	Transfer is available to the M34 SBS.wav
+FILE	Transfer is available to the Manhattan-bound F train.wav
+FILE	Transfer is available to the Q10 bus to JFK airport.wav
+FILE	Transfer is available to the Q33 and Q47 buses to LaGuardia Airport.wav
+FILE	Transfer is available to the Q44 SBS.wav
+FILE	Transfer is available to the R train.wav
+FILE	Transfer to Q47 and the LaGuardia Link Q70 SBS to LaGuardia airport.wav
+FILE	Transfer to the B82 SBS.wav
+FILE	Transfer to the M23 SBS.wav
+FILE	Transfer to the M79 SBS.wav
+FILE	Transfer to the M86 SBS.wav
+FILE	Transfer to the Q52 and Q53 SBS.wav
+FILE	Transfer to the Q53 SBS.wav
+TOTAL	Interchanges\
+FOLDER	Lines
+FILE	E mid.wav
+FILE	F line end.wav
+FILE	J express train end.wav
+FILE	J local train end.wav
+FILE	M train end.wav
+FILE	M train mid.wav
+TOTAL	Lines\
+FOLDER	Stations
+FILE	103 St.wav
+FILE	104 St.wav
+FILE	111 St.wav
+FILE	116 St.wav
+FILE	121 St.wav
+FILE	125 St.wav
+FILE	135 St.wav
+FILE	14 St.wav
+FILE	145 St.wav
+FILE	15 St-Prospect Pk.wav
+FILE	155 St.wav
+FILE	163 St-Amsterdam Av.wav
+FILE	168 St.wav
+FILE	175 St.wav
+FILE	18 Av.wav
+FILE	181 St.wav
+FILE	190 St.wav
+FILE	2 Av.wav
+FILE	20 Av.wav
+FILE	21 St-Queensbridge.wav
+FILE	23 St.wav
+FILE	25 St.wav
+FILE	34 St-Herald Sq.wav
+FILE	34 St-Penn Station.wav
+FILE	36 St.wav
+FILE	4 Av-9 St.wav
+FILE	42 St-Bryant Pk.wav
+FILE	42 St-Port Authority Bus Terminal.wav
+FILE	45 St.wav
+FILE	47-50 Sts-Rockefeller Ctr.wav
+FILE	5 Av-53 St.wav
+FILE	50 St.wav
+FILE	53 St.wav
+FILE	59 St-Columbus Circle.wav
+FILE	59 St.wav
+FILE	7 Av.wav
+FILE	72 St.wav
+FILE	75 Av.wav
+FILE	75 St-Elders Ln.wav
+FILE	8 Av.wav
+FILE	81 St-Museum of Natural History.wav
+FILE	85 St-Forest Pkwy.wav
+FILE	86 St v2.wav
+FILE	86 St.wav
+FILE	96 St.wav
+FILE	Alabama Av.wav
+FILE	Atlantic Av-Pacific St.wav
+FILE	Avenue I.wav
+FILE	Avenue N.wav
+FILE	Avenue P.wav
+FILE	Avenue U.wav
+FILE	Avenue X.wav
+FILE	Bay Pkwy.wav
+FILE	Bergen St.wav
+FILE	Bowery.wav
+FILE	Briarwood.wav
+FILE	Broad St.wav
+FILE	Broadway Junction.wav
+FILE	Broadway-Lafayette St.wav
+FILE	Canal St v2.wav
+FILE	Canal St.wav
+FILE	Caroll St.wav
+FILE	Cathedral Pkwy-110 St.wav
+FILE	Central Av.wav
+FILE	Chambers St.wav
+FILE	Church Av.wav
+FILE	Cleveland St.wav
+FILE	Coney Island-Stillwell Av.wav
+FILE	Court Sq-23 St.wav
+FILE	Court St.wav
+FILE	Crescent St.wav
+FILE	Cypress Hills.wav
+FILE	DeKalb Av.wav
+FILE	Delancey St-Essex St.wav
+FILE	Ditmas Av.wav
+FILE	Dyckman Street.wav
+FILE	East Broadway.wav
+FILE	Essex St.wav
+FILE	Flushing Av.wav
+FILE	Forest Av.wav
+FILE	Forest Hills-71 Av.wav
+FILE	Fort Hamilton Pkwy.wav
+FILE	Fresh Pond Rd.wav
+FILE	Fulton St v2.wav
+FILE	Fulton St.wav
+FILE	Gates Av.wav
+FILE	Halsey St.wav
+FILE	Hewes St.wav
+FILE	High St.wav
+FILE	Jackson Hts-Roosevelt Av.wav
+FILE	Jamaica Center-Parsons Archer.wav
+FILE	Jamaica-Van Wyck.wav
+FILE	Jay St-MetroTech.wav
+FILE	Kew Gardens-Union Tpke.wav
+FILE	Kings Hwy.wav
+FILE	Knickerbocker Av.wav
+FILE	Kosciuszko St.wav
+FILE	Lawrence St.wav
+FILE	Lexington Av-53 St.wav
+FILE	Lexington Av-63 St.wav
+FILE	Lorimer St.wav
+FILE	Marcy Av.wav
+FILE	Metropolitan Av-Middle Village.wav
+FILE	Myrtle Av-Broadway.wav
+FILE	Myrtle Av-Wyckoff Av.wav
+FILE	Neptune Av.wav
+FILE	New Utrecht Av.wav
+FILE	Norwood Av.wav
+FILE	Prospect Av.wav
+FILE	Queens Plaza.wav
+FILE	Seneca Av.wav
+FILE	Smith-9 Sts.wav
+FILE	Spring St.wav
+FILE	Sutphin Blvd-Archer Av-JFK.wav
+FILE	Sutphin Blvd-JFK.wav
+FILE	Union St.wav
+FILE	Van Syclen Av.wav
+FILE	W 4 St.wav
+FILE	W 8 St-NY Aquarium.wav
+FILE	Woodhaven Blvd.wav
+FILE	World Trade Center.wav
+TOTAL	Stations\
+TOTAL	MTA\
+FOLDER	Northern Line Extension 2021
+FOLDER	Destination
+FILE	4058.wav
+FILE	4060.wav
+FILE	4061.wav
+FILE	4063.wav
+TOTAL	Destination\
+FOLDER	Next Station
+FILE	3002.wav
+FILE	3003.wav
+FILE	3004.wav
+FILE	3031.wav
+FILE	3032.wav
+FILE	3044.wav
+FILE	3045.wav
+FILE	3076.wav
+FILE	3080.wav
+FILE	3094.wav
+FILE	3095.wav
+FILE	3124.wav
+FILE	3125.wav
+FILE	3126.wav
+FILE	3202.wav
+FILE	3216.wav
+TOTAL	Next Station\
+FOLDER	This Station
+FILE	2002.wav
+FILE	2031.wav
+FILE	2043.wav
+FILE	2044.wav
+FILE	2045.wav
+FILE	2076.wav
+FILE	2080.wav
+FILE	2096.wav
+FILE	2122.wav
+FILE	2202.wav
+FILE	2222.wav
+FILE	2224.wav
+FILE	2251.wav
+TOTAL	This Station\
+TOTAL	Northern Line Extension 2021\
+TOTAL	audios\
