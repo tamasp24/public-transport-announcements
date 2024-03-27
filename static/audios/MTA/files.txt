@@ -16,7 +16,6 @@ FILE	via the.wav
 FILE	via.wav
 FILE	Wear a mask.wav
 FOLDER	Destination
-FILE	Coney Island-bound.wav
 FILE	This is a Brooklyn-bound E local train.wav
 FILE	This is a Brooklyn-bound J local train.wav
 FILE	This is a Brooklyn-bound J train.wav
@@ -32,9 +31,7 @@ FILE	This is a Manhattan-bound J express train.wav
 FILE	This is a Manhattan-bound J train.wav
 FILE	This is a Manhattan-bound v2.wav
 FILE	This is a Manhattan-bound.wav
-FILE	This is a Middle Village-Metropolitan Av-bound J local train via the M line.wav
 FILE	This is a Middle Village-Metropolitan Av-bound.wav
-FILE	This is a Queens-bound J local train via the M line.wav
 FILE	This is a Queens-bound J local train.wav
 FILE	This is a Queens-bound M local train.wav
 FILE	This is a Queens-bound M train via the J line.wav
