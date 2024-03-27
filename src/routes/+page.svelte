@@ -83,7 +83,7 @@
 			.fetchAudio(...queue)
 			.then((buffers) => crunker.concatAudio(buffers))
 			.then((concatenated) => crunker.export(concatenated, 'audio/wav'))
-			.then((output) => crunker.download(output.blob, 'announcement.wav'))
+			.then((output) => crunker.download(output.blob, 'announcement'))
 			.catch((err) => {
 				throw new Error(err);
 			});
