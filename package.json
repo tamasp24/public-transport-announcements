@@ -43,6 +43,7 @@
 	"dependencies": {
 		"@tanstack/svelte-query": "^5.28.8",
 		"axios": "^1.6.8",
+		"crunker": "^2.4.0",
 		"svelte-icons": "^2.1.0"
 	}
 }
