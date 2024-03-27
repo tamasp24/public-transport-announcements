@@ -16,6 +16,7 @@
 	let playbackVolume: number = 0.3;
 	let search: string = '';
 	let fileList: string[] = [];
+	let currentlyPlayingFile: string = '';
 
 	$: announcementAudio.volume = playbackVolume;
 
@@ -28,6 +29,7 @@
 	const playAudio = (filePath: string) => {
 		announcementAudio.src = `${filePath}`;
 		announcementAudio.play();
+		currentlyPlayingFile = filePath;
 	};
 
 	const addToQueue = (fileName: string) => {
@@ -44,7 +46,10 @@
 
 			if (index < queue.length) {
 				playAudio(queue[index]);
+				return;
 			}
+
+			currentlyPlayingFile = '';
 		});
 	};
 
@@ -125,7 +130,13 @@
 				<div class="my-2 h-[100px] rounded-lg bg-white p-3">
 					{#if queue.length > 0}
 						{#each queue as file}
-							<span class="mr-1 text-black">{file.split('/').pop().replace('.wav', '')}</span>
+							<span class="mr-1 text-black">
+								{#if currentlyPlayingFile === file}
+									<b class="bg-sky-300">{file.split('/').pop().replace('.wav', '')}</b>
+								{:else}
+									{file.split('/').pop().replace('.wav', '')}
+								{/if}
+							</span>
 						{/each}
 					{/if}
 				</div>
@@ -143,7 +154,7 @@
 				>
 				<Button color="purple" on:click="{concatenateAudio}" disabled="{queue.length === 0}"
 					><div class="size-[20px]"><IoIosGitMerge /></div>
-					Concatenate</Button
+					Concatenate & Save</Button
 				>
 			</div>
 		</div>
