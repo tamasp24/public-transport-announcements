@@ -1,19 +1,15 @@
 FOLDER	audios
 FOLDER	MTA
 FILE	bound.wav
-FILE	line.wav
-FILE	local train.wav
 FILE	The next and last stop is.wav
 FILE	The next stop is v1.wav
 FILE	The next stop is v2.wav
 FILE	The next stop is v3.wav
-FILE	This is an.wav
 FILE	This is the last stop on the train. Please exit onto the platform so the train can get cleaned and get moving again.wav
 FILE	This is.wav
 FILE	This train is being diverted off is regular route. Please listen for train crew announcements.wav
 FILE	This train will be taken out of service at the next station. Please exit the train.wav
 FILE	Transfer is available to the.wav
-FILE	via the.wav
 FILE	via.wav
 FILE	Wear a mask.wav
 FOLDER	Destination
