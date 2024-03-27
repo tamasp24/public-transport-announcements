@@ -206,7 +206,9 @@
 			<div>
 				<h4 class="text-center">
 					The MTA announcements are de-noised fragments from <a
-						href="https://www.youtube.com/@MrRailfan">MrRailfan</a
+						class="text-sky-400"
+						href="https://www.youtube.com/@MrRailfan"
+						target="_blank">MrRailfan</a
 					>'s videos. The Northern Line extension and Southeastern announcements were released under
 					the FOI and are for personal use only.
 				</h4>
