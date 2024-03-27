@@ -7,6 +7,7 @@
 	// UI COMPONENTS
 	import { Button, Input, Range } from 'flowbite-svelte';
 	import IoIosPlay from 'svelte-icons/io/IoIosPlay.svelte';
+	import IoMdSquare from 'svelte-icons/io/IoMdSquare.svelte';
 	import IoIosAdd from 'svelte-icons/io/IoIosAdd.svelte';
 	import IoIosClose from 'svelte-icons/io/IoIosClose.svelte';
 	import IoIosGitMerge from 'svelte-icons/io/IoIosGitMerge.svelte';
@@ -94,6 +95,12 @@
 			});
 	};
 
+	const stopPlayback = () => {
+		announcementAudio.pause();
+		announcementAudio.currentTime = 0;
+		currentlyPlayingFile = '';
+	};
+
 	$: if ($filesQuery.isSuccess) fileList = processFileList($filesQuery.data);
 </script>
 
@@ -144,11 +151,21 @@
 					<h4 class="my-2 font-bold">Playback volume: {(playbackVolume * 100).toFixed(0)}%</h4>
 					<Range min="0" max="1" step="0.01" bind:value="{playbackVolume}" />
 				</div>
-				<Button on:click="{playQueue}" disabled="{queue.length === 0}"
-					><div class="size-[20px]"><IoIosPlay /></div>
-					Play Announcement</Button
-				>
-				<Button on:click="{() => (queue = [])}" disabled="{queue.length === 0}" outline
+				{#if announcementAudio.paused}
+					<Button on:click="{playQueue}" disabled="{queue.length === 0}"
+						><div class="size-[20px]"><IoIosPlay /></div>
+						Play Announcement</Button
+					>
+				{:else}
+					<Button on:click="{stopPlayback}" disabled="{queue.length === 0}"
+						><div class="size-[20px]"><IoMdSquare /></div>
+						Stop Announcement</Button
+					>
+				{/if}
+				<Button
+					on:click="{() => (queue = [])}"
+					disabled="{queue.length === 0 || !announcementAudio.paused}"
+					outline
 					><div class="size-[20px]"><IoIosClose /></div>
 					Clear Queue</Button
 				>
