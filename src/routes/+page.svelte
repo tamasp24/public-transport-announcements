@@ -157,7 +157,7 @@
 				{/if}
 			</div>
 		</div>
-		<div class="flex h-full w-[50%] flex-col">
+		<div class="flex h-full w-[70%] flex-col justify-between">
 			<div>
 				<h4 class="font-bold">Message</h4>
 				<div class="my-2 h-[100px] rounded-lg bg-white p-3 text-black">
@@ -202,6 +202,14 @@
 					><div class="size-[20px]"><IoMdDownload /></div>
 					Merge Fragments & Save</Button
 				>
+			</div>
+			<div>
+				<h4 class="text-center">
+					The MTA announcements are de-noised fragments from <a
+						href="https://www.youtube.com/@MrRailfan">MrRailfan</a
+					>'s videos. The Northern Line extension and Southeastern announcements were released under
+					the FOI and are for personal use only.
+				</h4>
 			</div>
 		</div>
 	</div>
