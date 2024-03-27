@@ -200,7 +200,7 @@
 				>
 				<Button color="purple" on:click="{concatenateAudio}" disabled="{queue.length === 0}"
 					><div class="size-[20px]"><IoMdDownload /></div>
-					Merge Fragments & Save</Button
+					Merge & Save</Button
 				>
 			</div>
 			<div>
