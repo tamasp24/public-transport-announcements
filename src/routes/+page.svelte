@@ -20,13 +20,14 @@
 	let announcementPacks = [];
 	let queue: string[] = [];
 	let announcementAudio = new Audio();
+	let previewAudio = new Audio();
 	let playbackVolume: number = 0.3;
 	let search: string = '';
 	let fileList: string[] = [];
 	let currentlyPlayingFile: string = '';
 	let selectedPack: string = 'MTA';
 
-	$: announcementAudio.volume = playbackVolume;
+	$: announcementAudio.volume = previewAudio.volume = playbackVolume;
 
 	const filePathRoot: string = '/audios/';
 	const filesQuery = createQuery<string>({
@@ -38,6 +39,11 @@
 		announcementAudio.src = `${filePath}`;
 		announcementAudio.play();
 		currentlyPlayingFile = filePath;
+	};
+
+	const playPreview = (filePath: string) => {
+		previewAudio.src = `${filePath}`;
+		previewAudio.play();
 	};
 
 	const addToQueue = (fileName: string) => {
@@ -137,7 +143,7 @@
 				{:else if fileList.length > 0}
 					{#each fileList.filter((f) => f.toLowerCase().includes(search.toLowerCase())) as file}
 						<div class="flex items-center justify-between gap-2 rounded-lg bg-gray-700 p-1">
-							<Button class="h-full" size="xs" on:click="{() => playAudio(`${file}`)}"
+							<Button class="h-full" size="xs" on:click="{() => playPreview(`${file}`)}"
 								><div class="size-[20px]"><IoIosPlay /></div></Button
 							>
 							<span class="text-center align-middle"
@@ -166,10 +172,7 @@
 							</span>
 						{/each}
 					{:else}
-						<i
-							>The queue is empty. Start by clicking on + next to the fragment you want to add to
-							your announcement.</i
-						>
+						<i>The queue is empty.</i>
 					{/if}
 				</div>
 				<div class="my-4 flex flex-col">
