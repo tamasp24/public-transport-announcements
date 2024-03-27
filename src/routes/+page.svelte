@@ -49,7 +49,7 @@
 
 		playAudio(queue[index]);
 
-		announcementAudio.addEventListener('ended', () => {
+		announcementAudio.onended = () => {
 			index++;
 
 			if (index < queue.length) {
@@ -58,7 +58,9 @@
 			}
 
 			currentlyPlayingFile = '';
-		});
+			announcementAudio.pause();
+			announcementAudio.currentTime = 0;
+		};
 	};
 
 	const processFileList = (file: string): Pack[] => {
@@ -113,7 +115,6 @@
 	$: if ($filesQuery.isSuccess) announcementPacks = processFileList($filesQuery.data);
 	$: if (announcementPacks.length > 0)
 		fileList = announcementPacks.filter((p) => p.name === selectedPack)[0].files;
-	$: console.log(selectedPack);
 </script>
 
 <div class="h-full p-5">
@@ -181,9 +182,9 @@
 						Play Announcement</Button
 					>
 				{:else}
-					<Button on:click="{stopPlayback}" disabled="{queue.length === 0}"
+					<Button on:click="{stopPlayback}"
 						><div class="size-[20px]"><IoMdSquare /></div>
-						Stop Announcement</Button
+						Stop Playback</Button
 					>
 				{/if}
 				<Button
