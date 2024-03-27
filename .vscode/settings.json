@@ -1,0 +1,9 @@
+{
+	"prettier.singleQuote": true,
+	"prettier.jsxSingleQuote": true,
+	"svelte.plugin.svelte.format.config.singleQuote": true,
+	"javascript.preferences.quoteStyle": "single",
+	"typescript.preferences.quoteStyle": "single",
+	"html.completion.attributeDefaultValue": "singlequotes",
+	"html.autoCreateQuotes": true
+}
