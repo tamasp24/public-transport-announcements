@@ -10,21 +10,28 @@
 	import IoMdSquare from 'svelte-icons/io/IoMdSquare.svelte';
 	import IoIosAdd from 'svelte-icons/io/IoIosAdd.svelte';
 	import IoIosClose from 'svelte-icons/io/IoIosClose.svelte';
-	import IoIosGitMerge from 'svelte-icons/io/IoIosGitMerge.svelte';
+	import IoMdDownload from 'svelte-icons/io/IoMdDownload.svelte';
 
+	type Pack = {
+		name: string;
+		files: string[];
+	};
+
+	let announcementPacks = [];
 	let queue: string[] = [];
 	let announcementAudio = new Audio();
 	let playbackVolume: number = 0.3;
 	let search: string = '';
 	let fileList: string[] = [];
 	let currentlyPlayingFile: string = '';
+	let selectedPack: string = 'MTA';
 
 	$: announcementAudio.volume = playbackVolume;
 
 	const filePathRoot: string = '/audios/';
 	const filesQuery = createQuery<string>({
 		queryKey: ['audio-files'],
-		queryFn: async () => await axios.get(`${filePathRoot}/MTA/files.txt`).then((r) => r.data)
+		queryFn: async () => await axios.get(`${filePathRoot}/files.txt`).then((r) => r.data)
 	});
 
 	const playAudio = (filePath: string) => {
@@ -54,32 +61,34 @@
 		});
 	};
 
-	const processFileList = (file: string): string[] => {
+	const processFileList = (file: string): Pack[] => {
 		let files: string[] = [];
 		let lines = file.split('\r\n');
 		let currentDirectory: string = '';
-		let audioPackRoot = lines[0].replace('FOLDER', '').trim();
 
 		lines.forEach((line, index: number) => {
-			if (index > 0 && index + 1 < lines.length) {
-				if (line.startsWith('TOTAL') || line.startsWith('FOLDER')) {
-					line = line.replace('TOTAL', '').replace('FOLDER', '').trim();
+			let audioPackRoot = lines[0].replace('FOLDER', '').trim();
 
-					if (line.endsWith('\\')) {
-						currentDirectory = currentDirectory.substring(
-							0,
-							currentDirectory.length - (line.replace('\\', '/').length + 1)
-						);
-					} else currentDirectory += `${line}/`;
-				} else if (line.startsWith('FILE')) {
-					files.push(
-						`${filePathRoot}${audioPackRoot}/${currentDirectory}${line.replace('FILE', '').trim()}`
-					);
-				}
+			if (line.startsWith('TOTAL') || line.startsWith('FOLDER')) {
+				line = line.replace('TOTAL', '').replace('FOLDER', '').trim();
+
+				if (line.endsWith('\\')) {
+					currentDirectory = currentDirectory.substring(0, currentDirectory.length - line.length);
+				} else currentDirectory += `${line}/`;
+			} else if (line.startsWith('FILE')) {
+				files.push(`${currentDirectory}${line.replace('FILE', '').trim()}`);
 			}
 		});
 
-		return files;
+		let packsNames = [...new Set(files.map((file) => file.split('/')[1]))];
+		let packs = packsNames.map((pack) => {
+			return {
+				name: pack,
+				files: files.filter((file) => file.split('/')[1] === pack)
+			};
+		});
+
+		return packs;
 	};
 
 	const concatenateAudio = () => {
@@ -101,7 +110,10 @@
 		currentlyPlayingFile = '';
 	};
 
-	$: if ($filesQuery.isSuccess) fileList = processFileList($filesQuery.data);
+	$: if ($filesQuery.isSuccess) announcementPacks = processFileList($filesQuery.data);
+	$: if (announcementPacks.length > 0)
+		fileList = announcementPacks.filter((p) => p.name === selectedPack)[0].files;
+	$: console.log(selectedPack);
 </script>
 
 <div class="h-full p-5">
@@ -111,10 +123,17 @@
 			<div
 				class="flex h-[95%] w-[300px] flex-col gap-1 overflow-y-auto overflow-x-hidden rounded-lg bg-gray-100 p-1"
 			>
+				{#if announcementPacks}
+					<select class="rounded-lg text-black" bind:value="{selectedPack}">
+						{#each announcementPacks as pack}
+							<option value="{pack.name}">{pack.name}</option>
+						{/each}
+					</select>
+				{/if}
 				<Input class="sticky top-0" bind:value="{search}" placeholder="Search..." />
 				{#if $filesQuery.isLoading || $filesQuery.isFetching}
 					<span>Loading...</span>
-				{:else if $filesQuery.isSuccess}
+				{:else if fileList.length > 0}
 					{#each fileList.filter((f) => f.toLowerCase().includes(search.toLowerCase())) as file}
 						<div class="flex items-center justify-between gap-2 rounded-lg bg-gray-700 p-1">
 							<Button class="h-full" size="xs" on:click="{() => playAudio(`${file}`)}"
@@ -134,10 +153,10 @@
 		<div class="flex h-full w-[50%] flex-col">
 			<div>
 				<h4 class="font-bold">Message</h4>
-				<div class="my-2 h-[100px] rounded-lg bg-white p-3">
+				<div class="my-2 h-[100px] rounded-lg bg-white p-3 text-black">
 					{#if queue.length > 0}
 						{#each queue as file}
-							<span class="mr-1 text-black">
+							<span class="mr-1">
 								{#if currentlyPlayingFile === file}
 									<b class="bg-sky-300">{file.split('/').pop().replace('.wav', '')}</b>
 								{:else}
@@ -145,6 +164,11 @@
 								{/if}
 							</span>
 						{/each}
+					{:else}
+						<i
+							>The queue is empty. Start by clicking on + next to the fragment you want to add to
+							your announcement.</i
+						>
 					{/if}
 				</div>
 				<div class="my-4 flex flex-col">
@@ -163,6 +187,7 @@
 					>
 				{/if}
 				<Button
+					color="red"
 					on:click="{() => (queue = [])}"
 					disabled="{queue.length === 0 || !announcementAudio.paused}"
 					outline
@@ -170,8 +195,8 @@
 					Clear Queue</Button
 				>
 				<Button color="purple" on:click="{concatenateAudio}" disabled="{queue.length === 0}"
-					><div class="size-[20px]"><IoIosGitMerge /></div>
-					Concatenate & Save</Button
+					><div class="size-[20px]"><IoMdDownload /></div>
+					Merge Fragments & Save</Button
 				>
 			</div>
 		</div>
