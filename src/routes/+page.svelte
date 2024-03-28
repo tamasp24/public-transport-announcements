@@ -126,7 +126,7 @@
 <div class="h-full p-5">
 	<div class="flex h-full gap-16">
 		<div>
-			<h4 class="font-bold">Audio fragments</h4>
+			<h4 class="my-1 font-bold">Audio fragments</h4>
 			<div
 				class="flex h-[95%] w-[300px] flex-col gap-1 overflow-y-auto overflow-x-hidden rounded-lg bg-gray-100 p-1"
 			>
