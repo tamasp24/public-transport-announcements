@@ -5,7 +5,7 @@
 	import Crunker from 'crunker';
 
 	// UI COMPONENTS
-	import { Button, Input, Range } from 'flowbite-svelte';
+	import { Button, Input, Range, Select } from 'flowbite-svelte';
 	import IoIosPlay from 'svelte-icons/io/IoIosPlay.svelte';
 	import IoMdSquare from 'svelte-icons/io/IoMdSquare.svelte';
 	import IoIosAdd from 'svelte-icons/io/IoIosAdd.svelte';
@@ -130,13 +130,10 @@
 			<div
 				class="flex h-[95%] w-[300px] flex-col gap-1 overflow-y-auto overflow-x-hidden rounded-lg bg-gray-100 p-1"
 			>
-				{#if announcementPacks}
-					<select class="rounded-lg text-black" bind:value="{selectedPack}">
-						{#each announcementPacks as pack}
-							<option value="{pack.name}">{pack.name}</option>
-						{/each}
-					</select>
-				{/if}
+				<Select
+					items="{announcementPacks.map((p) => ({ name: p.name, value: p.name }))}"
+					bind:value="{selectedPack}"
+				/>
 				<Input class="sticky top-0" bind:value="{search}" placeholder="Search..." />
 				{#if $filesQuery.isLoading || $filesQuery.isFetching}
 					<span>Loading...</span>
@@ -206,7 +203,6 @@
 			<div>
 				<h4 class="text-center">
 					The MTA announcements are de-noised fragments from <a
-						class="text-sky-400"
 						href="https://www.youtube.com/@MrRailfan"
 						target="_blank">MrRailfan</a
 					>'s videos. The Northern Line extension and Southeastern announcements were released under
