@@ -140,6 +140,11 @@
 		selectedInsertIndex = undefined;
 	};
 
+	const deleteSelectedPhrase = () => {
+		queue = queue.toSpliced(queue.indexOf(selectedPhrase), 1);
+		selectedPhrase = '';
+	};
+
 	$: if ($filesQuery.isSuccess) announcementPacks = processFileList($filesQuery.data);
 	$: if (announcementPacks.length > 0)
 		fileList = announcementPacks.filter((p) => p.name === selectedPack)[0].files;
@@ -202,7 +207,7 @@
 									{file.split('/').pop().replace('.wav', '')}
 								{/if}
 							</span>
-							{#if queue.length > 0}
+							{#if queue.length > 0 && announcementAudio.paused}
 								<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
 								<div
 									class="h-[25px] w-[10px] cursor-pointer hover:bg-gray-400"
@@ -216,6 +221,9 @@
 				</div>
 				{#if selectedPhrase || selectedInsertIndex}
 					<Button color="red" on:click="{removeSelection}" outline>Remove Selection</Button>
+					<Button color="red" on:click="{deleteSelectedPhrase}" disabled="{!selectedPhrase}"
+						>Delete Selection</Button
+					>
 				{:else}
 					<i>Click on a phrase to replace it.</i>
 				{/if}
