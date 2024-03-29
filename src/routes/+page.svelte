@@ -143,7 +143,6 @@
 	$: if ($filesQuery.isSuccess) announcementPacks = processFileList($filesQuery.data);
 	$: if (announcementPacks.length > 0)
 		fileList = announcementPacks.filter((p) => p.name === selectedPack)[0].files;
-	$: console.log(selectedInsertIndex);
 </script>
 
 <div class="h-full p-5">
