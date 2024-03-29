@@ -11,6 +11,7 @@
 	import IoIosAdd from 'svelte-icons/io/IoIosAdd.svelte';
 	import IoIosClose from 'svelte-icons/io/IoIosClose.svelte';
 	import IoMdDownload from 'svelte-icons/io/IoMdDownload.svelte';
+	import IoIosRepeat from 'svelte-icons/io/IoIosRepeat.svelte';
 
 	type Pack = {
 		name: string;
@@ -26,6 +27,8 @@
 	let fileList: string[] = [];
 	let currentlyPlayingFile: string = '';
 	let selectedPack: string = 'MTA';
+	let selectedPhrase: string = '';
+	let selectedInsertIndex: number | undefined = undefined;
 
 	$: announcementAudio.volume = previewAudio.volume = playbackVolume;
 
@@ -47,7 +50,13 @@
 	};
 
 	const addToQueue = (fileName: string) => {
-		queue = [...queue, fileName];
+		queue = queue.toSpliced(selectedInsertIndex ?? queue.length, 0, fileName);
+		selectedInsertIndex = undefined;
+	};
+
+	const clearQueue = () => {
+		queue = [];
+		selectedPhrase = '';
 	};
 
 	const playQueue = () => {
@@ -118,9 +127,23 @@
 		currentlyPlayingFile = '';
 	};
 
+	const replaceSelectedPhrase = (phrase: string) => {
+		let index = queue.indexOf(selectedPhrase);
+
+		if (~index) queue[index] = phrase;
+
+		selectedPhrase = '';
+	};
+
+	const removeSelection = () => {
+		selectedPhrase = '';
+		selectedInsertIndex = undefined;
+	};
+
 	$: if ($filesQuery.isSuccess) announcementPacks = processFileList($filesQuery.data);
 	$: if (announcementPacks.length > 0)
 		fileList = announcementPacks.filter((p) => p.name === selectedPack)[0].files;
+	$: console.log(selectedInsertIndex);
 </script>
 
 <div class="h-full p-5">
@@ -146,9 +169,19 @@
 							<span class="text-center align-middle"
 								>{file.split('/').pop().replace('.wav', '')}</span
 							>
-							<Button class="h-full" color="green" size="xs" on:click="{() => addToQueue(file)}"
-								><div class="size-[20px]"><IoIosAdd /></div></Button
-							>
+							{#if !selectedPhrase}
+								<Button class="h-full" color="green" size="xs" on:click="{() => addToQueue(file)}"
+									><div class="size-[20px]"><IoIosAdd /></div></Button
+								>
+							{:else if selectedPhrase}
+								<Button
+									class="h-full"
+									color="green"
+									size="xs"
+									on:click="{replaceSelectedPhrase(file)}"
+									><div class="size-[20px]"><IoIosRepeat /></div></Button
+								>
+							{/if}
 						</div>
 					{/each}
 				{/if}
@@ -157,21 +190,36 @@
 		<div class="flex h-full w-[70%] flex-col justify-between">
 			<div>
 				<h4 class="font-bold">Message</h4>
-				<div class="my-2 h-[100px] rounded-lg bg-white p-3 text-black">
+				<div class="my-2 flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black">
 					{#if queue.length > 0}
-						{#each queue as file}
-							<span class="mr-1">
+						{#each queue as file, index}
+							<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
+							<span on:click="{() => (selectedPhrase = file)}" class="mr-1 cursor-pointer">
 								{#if currentlyPlayingFile === file}
 									<b class="bg-sky-300">{file.split('/').pop().replace('.wav', '')}</b>
+								{:else if selectedPhrase === file}
+									<b class="bg-orange-300">{file.split('/').pop().replace('.wav', '')}</b>
 								{:else}
 									{file.split('/').pop().replace('.wav', '')}
 								{/if}
 							</span>
+							{#if queue.length > 0}
+								<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
+								<div
+									class="h-[25px] w-[10px] cursor-pointer hover:bg-gray-400"
+									on:click="{() => (selectedInsertIndex = index + 1)}"
+								></div>
+							{/if}
 						{/each}
 					{:else}
 						<i>The queue is empty.</i>
 					{/if}
 				</div>
+				{#if selectedPhrase || selectedInsertIndex}
+					<Button color="red" on:click="{removeSelection}" outline>Remove Selection</Button>
+				{:else}
+					<i>Click on a phrase to replace it.</i>
+				{/if}
 				<div class="my-4 flex flex-col">
 					<h4 class="my-2 font-bold">Playback volume: {(playbackVolume * 100).toFixed(0)}%</h4>
 					<Range min="0" max="1" step="0.01" bind:value="{playbackVolume}" />
@@ -189,7 +237,7 @@
 				{/if}
 				<Button
 					color="red"
-					on:click="{() => (queue = [])}"
+					on:click="{clearQueue}"
 					disabled="{queue.length === 0 || !announcementAudio.paused}"
 					outline
 					><div class="size-[20px]"><IoIosClose /></div>
