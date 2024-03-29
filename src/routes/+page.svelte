@@ -160,7 +160,10 @@
 				class="flex h-[95%] w-[300px] flex-col gap-1 overflow-y-auto overflow-x-hidden rounded-lg bg-gray-100 p-1"
 			>
 				<Select
-					items="{announcementPacks.map((p) => ({ name: p.name, value: p.name }))}"
+					items="{announcementPacks.map((p) => ({
+						name: `${p.name} (${p.files.length} phrases)`,
+						value: p.name
+					}))}"
 					bind:value="{selectedPack}"
 				/>
 				<Input class="sticky top-0" bind:value="{search}" placeholder="Search..." />
