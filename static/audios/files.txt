@@ -7,6 +7,7 @@ FILE	The next stop is v2.wav
 FILE	The next stop is v3.wav
 FILE	The next stop is v4.wav
 FILE	This is the last stop on the train. Please exit onto the platform so the train can get cleaned and get moving again.wav
+FILE	This is v2.wav
 FILE	This is.wav
 FILE	This train is being diverted off is regular route. Please listen for train crew announcements.wav
 FILE	This train will be taken out of service at the next station. Please exit the train.wav
@@ -15,9 +16,11 @@ FILE	via.wav
 FILE	Wear a mask.wav
 FOLDER	Destination
 FILE	Coney Island-bound.wav
+FILE	This is a 168 St-bound.wav
 FILE	This is a Brooklyn-bound E local train.wav
 FILE	This is a Brooklyn-bound J local train.wav
 FILE	This is a Brooklyn-bound J train.wav
+FILE	This is a Brooklyn-bound M local train.wav
 FILE	This is a Brooklyn-bound.wav
 FILE	This is a Jamaica Center-bound E local train.wav
 FILE	This is a Jamaica Center-Parsons Archer-bound M train via the J line.wav
@@ -28,16 +31,20 @@ FILE	This is a Manhattan-bound E express train.wav
 FILE	This is a Manhattan-bound E local train.wav
 FILE	This is a Manhattan-bound J express train.wav
 FILE	This is a Manhattan-bound J train.wav
+FILE	This is a Manhattan-bound M local train.wav
 FILE	This is a Manhattan-bound v2.wav
 FILE	This is a Manhattan-bound.wav
 FILE	This is a Middle Village-Metropolitan Av-bound.wav
 FILE	This is a Queens-bound J local train.wav
 FILE	This is a Queens-bound M local train.wav
 FILE	This is a Queens-bound M train via the J line.wav
+FILE	This is a Queens-bound.wav
+FILE	This is a Whitehall St-bound.wav
 FILE	This is a World Trade Center-bound E train.wav
 FILE	This is a World Trade Center-bound.wav
 FILE	via the 6 Av line.wav
 FILE	via the A line.wav
+FILE	via the B line.wav
 FILE	via the F line.wav
 FILE	via the J line.wav
 FILE	via the N line.wav
@@ -108,6 +115,8 @@ FILE	E mid.wav
 FILE	F line end.wav
 FILE	J express train end.wav
 FILE	J local train end.wav
+FILE	M local train end.wav
+FILE	M train end v2.wav
 FILE	M train end.wav
 FILE	M train mid.wav
 TOTAL	Lines\
@@ -119,6 +128,7 @@ FILE	116 St.wav
 FILE	121 St.wav
 FILE	125 St.wav
 FILE	135 St.wav
+FILE	14 St-Union Sq.wav
 FILE	14 St.wav
 FILE	145 St.wav
 FILE	15 St-Prospect Pk.wav
@@ -132,8 +142,11 @@ FILE	190 St.wav
 FILE	2 Av.wav
 FILE	20 Av.wav
 FILE	21 St-Queensbridge.wav
+FILE	23 St v2.wav
 FILE	23 St.wav
 FILE	25 St.wav
+FILE	28 St.wav
+FILE	34 St-Herald Sq v2.wav
 FILE	34 St-Herald Sq.wav
 FILE	34 St-Penn Station.wav
 FILE	36 St.wav
@@ -142,16 +155,19 @@ FILE	42 St-Bryant Pk.wav
 FILE	42 St-Port Authority Bus Terminal.wav
 FILE	45 St.wav
 FILE	47-50 Sts-Rockefeller Ctr.wav
+FILE	49 St.wav
 FILE	5 Av-53 St.wav
 FILE	50 St.wav
 FILE	53 St.wav
 FILE	59 St-Columbus Circle.wav
 FILE	59 St.wav
+FILE	67 Av.wav
 FILE	7 Av.wav
 FILE	72 St.wav
 FILE	75 Av.wav
 FILE	75 St-Elders Ln.wav
 FILE	8 Av.wav
+FILE	8 St-NYU.wav
 FILE	81 St-Museum of Natural History.wav
 FILE	85 St-Forest Pkwy.wav
 FILE	86 St v2.wav
@@ -172,14 +188,18 @@ FILE	Broad St.wav
 FILE	Broadway Junction.wav
 FILE	Broadway-Lafayette St.wav
 FILE	Canal St v2.wav
+FILE	Canal St v3.wav
 FILE	Canal St.wav
 FILE	Caroll St.wav
+FILE	Cathedral Pkwy-110 St v2.wav
 FILE	Cathedral Pkwy-110 St.wav
 FILE	Central Av.wav
 FILE	Chambers St.wav
 FILE	Church Av.wav
+FILE	City Hall.wav
 FILE	Cleveland St.wav
 FILE	Coney Island-Stillwell Av.wav
+FILE	Cortlandt St.wav
 FILE	Court Sq-23 St.wav
 FILE	Court St.wav
 FILE	Crescent St.wav
@@ -211,6 +231,7 @@ FILE	Knickerbocker Av.wav
 FILE	Kosciuszko St.wav
 FILE	Lawrence St.wav
 FILE	Lexington Av-53 St.wav
+FILE	Lexington Av-59 St.wav
 FILE	Lexington Av-63 St.wav
 FILE	Lorimer St.wav
 FILE	Marcy Av.wav
@@ -219,18 +240,24 @@ FILE	Myrtle Av-Broadway.wav
 FILE	Myrtle Av-Wyckoff Av.wav
 FILE	Neptune Av.wav
 FILE	New Utrecht Av.wav
+FILE	Northern Blvd.wav
 FILE	Norwood Av.wav
+FILE	Prince St.wav
 FILE	Prospect Av.wav
 FILE	Queens Plaza.wav
+FILE	Rector St.wav
 FILE	Seneca Av.wav
 FILE	Smith-9 Sts.wav
 FILE	Spring St.wav
 FILE	Sutphin Blvd-Archer Av-JFK.wav
 FILE	Sutphin Blvd-JFK.wav
+FILE	Times Sq-42 St.wav
 FILE	Union St.wav
 FILE	Van Syclen Av.wav
 FILE	W 4 St.wav
 FILE	W 8 St-NY Aquarium.wav
+FILE	Whitehall St.wav
+FILE	Woodhaven Blvd v2.wav
 FILE	Woodhaven Blvd.wav
 FILE	World Trade Center.wav
 TOTAL	Stations\
