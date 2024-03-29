@@ -198,6 +198,13 @@
 					{#if queue.length > 0}
 						{#each queue as file, index}
 							<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
+							{#if queue.length > 0 && announcementAudio.paused}
+								<div
+									class="h-[25px] w-[10px] cursor-pointer hover:bg-gray-400"
+									on:click="{() => (selectedInsertIndex = index)}"
+								></div>
+							{/if}
+							<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
 							<span on:click="{() => (selectedPhrase = file)}" class="mr-1 cursor-pointer">
 								{#if currentlyPlayingFile === file}
 									<b class="bg-sky-300">{file.split('/').pop().replace('.wav', '')}</b>
@@ -207,13 +214,6 @@
 									{file.split('/').pop().replace('.wav', '')}
 								{/if}
 							</span>
-							{#if queue.length > 0 && announcementAudio.paused}
-								<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
-								<div
-									class="h-[25px] w-[10px] cursor-pointer hover:bg-gray-400"
-									on:click="{() => (selectedInsertIndex = index + 1)}"
-								></div>
-							{/if}
 						{/each}
 					{:else}
 						<i>The queue is empty.</i>
