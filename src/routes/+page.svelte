@@ -232,7 +232,7 @@
 				{#if selectedPhrase || selectedInsertIndex !== undefined}
 					<Button color="red" on:click="{removeSelection}" outline>Remove Selection</Button>
 					<Button color="red" on:click="{deleteSelectedPhrase}" disabled="{!selectedPhrase}"
-						>Delete Selection</Button
+						>Delete Selected Phrase</Button
 					>
 				{:else}
 					<i>Click on a phrase to replace it.</i>
