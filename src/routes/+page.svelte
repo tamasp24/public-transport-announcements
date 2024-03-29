@@ -229,7 +229,7 @@
 						<i>The queue is empty.</i>
 					{/if}
 				</div>
-				{#if selectedPhrase || selectedInsertIndex}
+				{#if selectedPhrase || selectedInsertIndex !== undefined}
 					<Button color="red" on:click="{removeSelection}" outline>Remove Selection</Button>
 					<Button color="red" on:click="{deleteSelectedPhrase}" disabled="{!selectedPhrase}"
 						>Delete Selection</Button
