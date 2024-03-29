@@ -215,7 +215,7 @@
 								</div>
 							{/if}
 							<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
-							<span on:click="{() => (selectedPhrase = file)}" class="mr-1 cursor-pointer">
+							<span on:click="{() => (selectedPhrase = file)}" class="mx-1 cursor-pointer">
 								{#if currentlyPlayingFile === file}
 									<b class="bg-sky-300">{file.split('/').pop().replace('.wav', '')}</b>
 								{:else if selectedPhrase === file}
