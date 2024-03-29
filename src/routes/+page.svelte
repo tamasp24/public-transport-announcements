@@ -12,6 +12,7 @@
 	import IoIosClose from 'svelte-icons/io/IoIosClose.svelte';
 	import IoMdDownload from 'svelte-icons/io/IoMdDownload.svelte';
 	import IoIosRepeat from 'svelte-icons/io/IoIosRepeat.svelte';
+	import MdSubdirectoryArrowLeft from 'svelte-icons/md/MdSubdirectoryArrowLeft.svelte';
 
 	type Pack = {
 		name: string;
@@ -57,6 +58,7 @@
 	const clearQueue = () => {
 		queue = [];
 		selectedPhrase = '';
+		selectedInsertIndex = undefined;
 	};
 
 	const playQueue = () => {
@@ -198,11 +200,19 @@
 					{#if queue.length > 0}
 						{#each queue as file, index}
 							<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
-							{#if queue.length > 0 && announcementAudio.paused}
+							{#if queue.length > 0 && announcementAudio.paused && index !== selectedInsertIndex}
 								<div
 									class="h-[25px] w-[10px] cursor-pointer hover:bg-gray-400"
 									on:click="{() => (selectedInsertIndex = index)}"
 								></div>
+							{:else if index === selectedInsertIndex}
+								<div
+									class="flex h-[25px] w-[10px] cursor-pointer flex-col justify-center bg-amber-400"
+								>
+									<div class="size-[10px]">
+										<MdSubdirectoryArrowLeft />
+									</div>
+								</div>
 							{/if}
 							<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
 							<span on:click="{() => (selectedPhrase = file)}" class="mr-1 cursor-pointer">
