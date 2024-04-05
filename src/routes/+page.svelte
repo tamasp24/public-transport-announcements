@@ -170,14 +170,17 @@
 				{#if $filesQuery.isLoading || $filesQuery.isFetching}
 					<span>Loading...</span>
 				{:else if fileList.length > 0}
-					{#each fileList.filter((f) => f.toLowerCase().includes(search.toLowerCase())) as file}
+					{#each fileList
+						.filter((f) => f.toLowerCase().includes(search.toLowerCase()))
+						.sort() as file}
 						<div class="flex items-center justify-between gap-2 rounded-lg bg-gray-700 p-1">
 							<Button class="h-full" size="xs" on:click="{() => playPreview(`${file}`)}"
 								><div class="size-[20px]"><IoIosPlay /></div></Button
 							>
-							<span class="text-center align-middle"
-								>{file.split('/').pop().replace('.wav', '')}</span
-							>
+							<div class="flex flex-col align-middle">
+								<span class="text-center">{file.split('/').pop().replace('.wav', '')}</span>
+								<small>{file.split('/').slice(-2)[0]}</small>
+							</div>
 							{#if !selectedPhrase}
 								<Button class="h-full" color="green" size="xs" on:click="{() => addToQueue(file)}"
 									><div class="size-[20px]"><IoIosAdd /></div></Button
