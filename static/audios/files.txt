@@ -15,6 +15,7 @@ FILE	Transfer is available to the.wav
 FILE	via.wav
 FILE	Wear a mask.wav
 FOLDER	Destination
+FOLDER	Catherine
 FILE	Coney Island-bound.wav
 FILE	This is a 168 St-bound.wav
 FILE	This is a Brooklyn-bound E local train.wav
@@ -42,19 +43,22 @@ FILE	This is a Queens-bound.wav
 FILE	This is a Whitehall St-bound.wav
 FILE	This is a World Trade Center-bound E train.wav
 FILE	This is a World Trade Center-bound.wav
-FILE	via the 6 Av line.wav
 FILE	via the A line.wav
 FILE	via the B line.wav
 FILE	via the F line.wav
 FILE	via the J line.wav
 FILE	via the N line.wav
+TOTAL	Catherine\
+FOLDER	Kathleen
+FILE	via the 6 Av line.wav
+TOTAL	Kathleen\
 TOTAL	Destination\
 FOLDER	Interchanges
-FILE	Connection is available to GWB.wav
 FILE	Connection is available to LIRR, NJ Transit and Amtrak.wav
+FILE	Transfer is available to the F and M trains. Transfer is also available to the M14 SBS.wav
+FILE	Transfer is available to the F train and the M15 SBS.wav
+FOLDER	Catherine
 FILE	Connection is available to LIRR.wav
-FILE	Connection is available to PATH trains.wav
-FILE	Connection is available to PATH.wav
 FILE	Connection is available to the LIRR and Airtrain to JFK airport.wav
 FILE	Connection is available to the PATH trains.wav
 FILE	Connection is available to the Port Authority Bus Terminal.wav
@@ -62,11 +66,7 @@ FILE	Connection is available to the Q33 bus to LaGuardia Airport.wav
 FILE	Transfer is available to the 1, 2, 3, 7, A, C, N, Q and R trains, and shuttle Grand Central.wav
 FILE	Transfer is available to the 1, A, C and D trains.wav
 FILE	Transfer is available to the 2, 3, 4, 5 and R trains.wav
-FILE	Transfer is available to the 2, 3, 4, 5, A and C trains.wav
-FILE	Transfer is available to the 2, 3, 4, 5, B, D, N, Q and R trains.wav
-FILE	Transfer is available to the 2, 3, A, C and R trains.wav
 FILE	Transfer is available to the 4, 5 and 6 trains.wav
-FILE	Transfer is available to the 4, 6, D and F trains.wav
 FILE	Transfer is available to the 6 train.wav
 FILE	Transfer is available to the 6, N, Q, R and W trains.wav
 FILE	Transfer is available to the 7 and G trains.wav
@@ -76,10 +76,8 @@ FILE	Transfer is available to the 7, E, G, R and V trains. Transfer is available
 FILE	Transfer is available to the 7, F and R trains.wav
 FILE	Transfer is available to the A and C trains.wav
 FILE	Transfer is available to the A, C and D trains.wav
-FILE	Transfer is available to the A, C and L trains.wav
 FILE	Transfer is available to the A, C, D and F trains.wav
 FILE	Transfer is available to the A, C, D, F and M trains.wav
-FILE	Transfer is available to the A, C, F and R trains.wav
 FILE	Transfer is available to the B and Q trains.wav
 FILE	Transfer is available to the B44 SBS.wav
 FILE	Transfer is available to the Brooklyn-bound C train.wav
@@ -87,21 +85,13 @@ FILE	Transfer is available to the D, F, N and Q trains.wav
 FILE	Transfer is available to the D, F, N, Q and R trains.wav
 FILE	Transfer is available to the E train.wav
 FILE	Transfer is available to the F and G trains.wav
-FILE	Transfer is available to the F and M trains. Transfer is also available to the M14 SBS.wav
 FILE	Transfer is available to the F and M trains.wav
 FILE	Transfer is available to the F and R trains.wav
-FILE	Transfer is available to the F train and the M15 SBS.wav
 FILE	Transfer is available to the F train.wav
 FILE	Transfer is available to the J and Z trains.wav
-FILE	Transfer is available to the J train.wav
-FILE	Transfer is available to the L train.wav
 FILE	Transfer is available to the M train.wav
-FILE	Transfer is available to the M34 SBS.wav
 FILE	Transfer is available to the Manhattan-bound F train.wav
-FILE	Transfer is available to the Q10 bus to JFK airport.wav
-FILE	Transfer is available to the Q33 and Q47 buses to LaGuardia Airport.wav
 FILE	Transfer is available to the Q44 SBS.wav
-FILE	Transfer is available to the R train.wav
 FILE	Transfer to Q47 and the LaGuardia Link Q70 SBS to LaGuardia airport.wav
 FILE	Transfer to the B82 SBS.wav
 FILE	Transfer to the M23 SBS.wav
@@ -109,6 +99,24 @@ FILE	Transfer to the M79 SBS.wav
 FILE	Transfer to the M86 SBS.wav
 FILE	Transfer to the Q52 and Q53 SBS.wav
 FILE	Transfer to the Q53 SBS.wav
+TOTAL	Catherine\
+FOLDER	Kathleen
+FILE	Connection is available to GWB.wav
+FILE	Connection is available to PATH trains.wav
+FILE	Connection is available to PATH.wav
+FILE	Transfer is available to the 2, 3, 4, 5, A and C trains.wav
+FILE	Transfer is available to the 2, 3, 4, 5, B, D, N, Q and R trains.wav
+FILE	Transfer is available to the 2, 3, A, C and R trains.wav
+FILE	Transfer is available to the 4, 6, D and F trains.wav
+FILE	Transfer is available to the A, C and L trains.wav
+FILE	Transfer is available to the A, C, F and R trains.wav
+FILE	Transfer is available to the J train.wav
+FILE	Transfer is available to the L train.wav
+FILE	Transfer is available to the M34 SBS.wav
+FILE	Transfer is available to the Q10 bus to JFK airport.wav
+FILE	Transfer is available to the Q33 and Q47 buses to LaGuardia Airport.wav
+FILE	Transfer is available to the R train.wav
+TOTAL	Kathleen\
 TOTAL	Interchanges\
 FOLDER	Lines
 FILE	E mid.wav
