@@ -1,12 +1,14 @@
 FOLDER	audios
 FOLDER	MTA
 FILE	bound.wav
+FILE	The next and last stop is - Kathleen.wav
 FILE	The next and last stop is.wav
 FILE	The next stop is v1.wav
 FILE	The next stop is v2.wav
 FILE	The next stop is v3.wav
 FILE	The next stop is v4.wav
 FILE	This is the last stop on the train. Please exit onto the platform so the train can get cleaned and get moving again.wav
+FILE	This is the last stop on this train. Everyone please leave the train. Thank you for riding with MTA.wav
 FILE	This is v2.wav
 FILE	This is.wav
 FILE	This train is being diverted off is regular route. Please listen for train crew announcements.wav
@@ -50,6 +52,10 @@ FILE	via the J line.wav
 FILE	via the N line.wav
 TOTAL	Catherine\
 FOLDER	Kathleen
+FILE	This is a Jamaica-179 St-bound F express train.wav
+FILE	This is a Jamaica-179 St-bound F local train.wav
+FILE	This is a Manhattan-bound F local train.wav
+FILE	This is a Queens-bound F local train.wav
 FILE	via the 6 Av line.wav
 TOTAL	Kathleen\
 TOTAL	Destination\
@@ -63,6 +69,8 @@ FILE	Connection is available to the LIRR and Airtrain to JFK airport.wav
 FILE	Connection is available to the PATH trains.wav
 FILE	Connection is available to the Port Authority Bus Terminal.wav
 FILE	Connection is available to the Q33 bus to LaGuardia Airport.wav
+FILE	Transfer is available to the 1, 2 and L trains.wav
+FILE	Transfer is available to the 1, 2, 3 and L trains.wav
 FILE	Transfer is available to the 1, 2, 3, 7, A, C, N, Q and R trains, and shuttle Grand Central.wav
 FILE	Transfer is available to the 1, A, C and D trains.wav
 FILE	Transfer is available to the 2, 3, 4, 5 and R trains.wav
@@ -70,7 +78,6 @@ FILE	Transfer is available to the 4, 5 and 6 trains.wav
 FILE	Transfer is available to the 6 train.wav
 FILE	Transfer is available to the 6, N, Q, R and W trains.wav
 FILE	Transfer is available to the 7 and G trains.wav
-FILE	Transfer is available to the 7, E and G trains.wav
 FILE	Transfer is available to the 7, E, G and R trains.wav
 FILE	Transfer is available to the 7, E, G, R and V trains. Transfer is available to the Q33 and Q47 buses to LaGuardia Airport.wav
 FILE	Transfer is available to the 7, F and R trains.wav
@@ -100,6 +107,11 @@ FILE	Transfer to the M86 SBS.wav
 FILE	Transfer to the Q52 and Q53 SBS.wav
 FILE	Transfer to the Q53 SBS.wav
 TOTAL	Catherine\
+FOLDER	Charlie
+FILE	A free transfer is available to the 4, 5, 6, N and R trains by walking to the Lexington Av-59 St station and using your MetroCard.wav
+FILE	A free transfer is available to the 4, 5, 6, N, R and W trains by walking to the Lexington Av-59 St station and using your MetroCard.wav
+FILE	A free transfer is available to the 4, 6 and N trains by walking to the Lexington Av-59 St station and using your MetroCard.wav
+TOTAL	Charlie\
 FOLDER	Kathleen
 FILE	Connection is available to GWB.wav
 FILE	Connection is available to PATH trains.wav
@@ -108,14 +120,50 @@ FILE	Transfer is available to the 2, 3, 4, 5, A and C trains.wav
 FILE	Transfer is available to the 2, 3, 4, 5, B, D, N, Q and R trains.wav
 FILE	Transfer is available to the 2, 3, A, C and R trains.wav
 FILE	Transfer is available to the 4, 6, D and F trains.wav
+FILE	Transfer is available to the 7 and D trains.wav
+FILE	Transfer is available to the 7, B and D trains.wav
+FILE	Transfer is available to the 7, E and G trains.wav
+FILE	Transfer is available to the 7, E, R and V trains.wav
+FILE	Transfer is available to the A and C trains.wav
+FILE	Transfer is available to the A train.wav
+FILE	Transfer is available to the A, B, D, C and E trains.wav
 FILE	Transfer is available to the A, C and L trains.wav
+FILE	Transfer is available to the A, C, D and E trains.wav
 FILE	Transfer is available to the A, C, F and R trains.wav
+FILE	Transfer is available to the A, D and E trains.wav
+FILE	Transfer is available to the B, D and downtown 6 trains.wav
+FILE	Transfer is available to the B, D and V trains.wav
+FILE	Transfer is available to the B, D, N, Q, R and W trains.wav
+FILE	Transfer is available to the B, D, V and downtown 6 trains.wav
+FILE	Transfer is available to the D and downtown 6 trains.wav
+FILE	Transfer is available to the D and V trains.wav
+FILE	Transfer is available to the D train.wav
+FILE	Transfer is available to the D, downtown 4 and downtown 6 trains.wav
+FILE	Transfer is available to the D, N and Q trains-2-2.wav
+FILE	Transfer is available to the D, N and Q trains-2.wav
+FILE	Transfer is available to the D, N and Q trains.wav
+FILE	Transfer is available to the D, N, Q and R trains-2.wav
+FILE	Transfer is available to the D, N, Q and R trains.wav
+FILE	Transfer is available to the D, V and downtown 6 trains.wav
+FILE	Transfer is available to the E and G trains.wav
+FILE	Transfer is available to the E train.wav
+FILE	Transfer is available to the G and R trains.wav
+FILE	Transfer is available to the G train.wav
+FILE	Transfer is available to the G, R and V trains.wav
+FILE	Transfer is available to the J and M trains.wav
 FILE	Transfer is available to the J train.wav
+FILE	Transfer is available to the J, M and Z trains.wav
 FILE	Transfer is available to the L train.wav
+FILE	Transfer is available to the M and R trains.wav
 FILE	Transfer is available to the M34 SBS.wav
+FILE	Transfer is available to the N train.wav
+FILE	Transfer is available to the Q train.wav
 FILE	Transfer is available to the Q10 bus to JFK airport.wav
+FILE	Transfer is available to the Q3 bus to JFK airport.wav
 FILE	Transfer is available to the Q33 and Q47 buses to LaGuardia Airport.wav
+FILE	Transfer is available to the R and V trains.wav
 FILE	Transfer is available to the R train.wav
+FILE	Transfer is available to the V train.wav
 TOTAL	Kathleen\
 TOTAL	Interchanges\
 FOLDER	Lines
@@ -129,12 +177,10 @@ FILE	M train end.wav
 FILE	M train mid.wav
 TOTAL	Lines\
 FOLDER	Stations
-FILE	103 St.wav
+FOLDER	Catherine
 FILE	104 St.wav
 FILE	111 St.wav
-FILE	116 St.wav
 FILE	121 St.wav
-FILE	125 St.wav
 FILE	135 St.wav
 FILE	14 St-Union Sq.wav
 FILE	14 St.wav
@@ -142,12 +188,10 @@ FILE	145 St.wav
 FILE	15 St-Prospect Pk.wav
 FILE	155 St.wav
 FILE	163 St-Amsterdam Av.wav
-FILE	168 St.wav
 FILE	175 St.wav
 FILE	18 Av.wav
 FILE	181 St.wav
 FILE	190 St.wav
-FILE	2 Av.wav
 FILE	20 Av.wav
 FILE	21 St-Queensbridge.wav
 FILE	23 St v2.wav
@@ -162,7 +206,6 @@ FILE	4 Av-9 St.wav
 FILE	42 St-Bryant Pk.wav
 FILE	42 St-Port Authority Bus Terminal.wav
 FILE	45 St.wav
-FILE	47-50 Sts-Rockefeller Ctr.wav
 FILE	49 St.wav
 FILE	5 Av-53 St.wav
 FILE	50 St.wav
@@ -171,16 +214,12 @@ FILE	59 St-Columbus Circle.wav
 FILE	59 St.wav
 FILE	67 Av.wav
 FILE	7 Av.wav
-FILE	72 St.wav
 FILE	75 Av.wav
 FILE	75 St-Elders Ln.wav
 FILE	8 Av.wav
 FILE	8 St-NYU.wav
-FILE	81 St-Museum of Natural History.wav
 FILE	85 St-Forest Pkwy.wav
-FILE	86 St v2.wav
 FILE	86 St.wav
-FILE	96 St.wav
 FILE	Alabama Av.wav
 FILE	Atlantic Av-Pacific St.wav
 FILE	Avenue I.wav
@@ -200,7 +239,6 @@ FILE	Canal St v3.wav
 FILE	Canal St.wav
 FILE	Caroll St.wav
 FILE	Cathedral Pkwy-110 St v2.wav
-FILE	Cathedral Pkwy-110 St.wav
 FILE	Central Av.wav
 FILE	Chambers St.wav
 FILE	Church Av.wav
@@ -208,15 +246,12 @@ FILE	City Hall.wav
 FILE	Cleveland St.wav
 FILE	Coney Island-Stillwell Av.wav
 FILE	Cortlandt St.wav
-FILE	Court Sq-23 St.wav
 FILE	Court St.wav
 FILE	Crescent St.wav
 FILE	Cypress Hills.wav
 FILE	DeKalb Av.wav
-FILE	Delancey St-Essex St.wav
 FILE	Ditmas Av.wav
 FILE	Dyckman Street.wav
-FILE	East Broadway.wav
 FILE	Essex St.wav
 FILE	Flushing Av.wav
 FILE	Forest Av.wav
@@ -232,7 +267,6 @@ FILE	High St.wav
 FILE	Jackson Hts-Roosevelt Av.wav
 FILE	Jamaica Center-Parsons Archer.wav
 FILE	Jamaica-Van Wyck.wav
-FILE	Jay St-MetroTech.wav
 FILE	Kew Gardens-Union Tpke.wav
 FILE	Kings Hwy.wav
 FILE	Knickerbocker Av.wav
@@ -268,6 +302,67 @@ FILE	Whitehall St.wav
 FILE	Woodhaven Blvd v2.wav
 FILE	Woodhaven Blvd.wav
 FILE	World Trade Center.wav
+TOTAL	Catherine\
+FOLDER	Kathleen
+FILE	103 St.wav
+FILE	116 St.wav
+FILE	125 St.wav
+FILE	14 St.wav
+FILE	15 St-Prospect Pk.wav
+FILE	168 St.wav
+FILE	169 St.wav
+FILE	18 Av.wav
+FILE	2 Av.wav
+FILE	21 St-Queensbridge.wav
+FILE	23 St.wav
+FILE	34 St-Herald Sq.wav
+FILE	4 Av-9 St.wav
+FILE	42 St-Bryant Pk.wav
+FILE	47-50 Sts-Rockefeller Ctr.wav
+FILE	57 St.wav
+FILE	7 Av.wav
+FILE	72 St.wav
+FILE	75 Av.wav
+FILE	81 St-Museum of Natural History.wav
+FILE	86 St.wav
+FILE	96 St.wav
+FILE	Avenue I.wav
+FILE	Avenue N.wav
+FILE	Avenue P.wav
+FILE	Avenue U.wav
+FILE	Avenue X.wav
+FILE	Bay Pkwy.wav
+FILE	Bergen St.wav
+FILE	Briarwood-Van Wyck Blvd.wav
+FILE	Broadway-Lafayette St.wav
+FILE	Caroll St.wav
+FILE	Cathedral Pkwy-110 St.wav
+FILE	Church Av.wav
+FILE	Coney Island-Stillwell Av.wav
+FILE	Court Sq-23 St.wav
+FILE	Delancey St-Essex St.wav
+FILE	Ditmas Av.wav
+FILE	East Broadway v2.wav
+FILE	East Broadway.wav
+FILE	Forest Hills-71 Av.wav
+FILE	Fort Hamilton Pkwy.wav
+FILE	Jackson Hts-Roosevelt Av.wav
+FILE	Jamaica-179 St.wav
+FILE	Jay St-Borough Hall.wav
+FILE	Jay St-MetroTech.wav
+FILE	Kew Gardens-Union Tpke.wav
+FILE	Kings Hwy.wav
+FILE	Lexington Av-63 St.wav
+FILE	Lower East Side-2 Av.wav
+FILE	Neptune Av.wav
+FILE	Parsons Blvd.wav
+FILE	Roosevelt Island.wav
+FILE	Smith-9 Sts.wav
+FILE	Sutphin Blvd.wav
+FILE	W 4 St-Washington Sq.wav
+FILE	W 8 St-NY Aquarium.wav
+FILE	York St.wav
+TOTAL	Kathleen\
 TOTAL	Stations\
 TOTAL	MTA\
 FOLDER	TfL - Northern Line Extension 2021
