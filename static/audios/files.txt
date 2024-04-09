@@ -3,13 +3,12 @@ FOLDER	MTA
 FILE	bound.wav
 FILE	The next and last stop is - Kathleen.wav
 FILE	The next and last stop is.wav
+FILE	The next stop is - Kathleen.wav
 FILE	The next stop is v1.wav
 FILE	The next stop is v2.wav
-FILE	The next stop is v3.wav
-FILE	The next stop is v4.wav
+FILE	This is - Kathleen.wav
 FILE	This is the last stop on the train. Please exit onto the platform so the train can get cleaned and get moving again.wav
 FILE	This is the last stop on this train. Everyone please leave the train. Thank you for riding with MTA.wav
-FILE	This is v2.wav
 FILE	This is.wav
 FILE	This train is being diverted off is regular route. Please listen for train crew announcements.wav
 FILE	This train will be taken out of service at the next station. Please exit the train.wav
@@ -28,8 +27,6 @@ FILE	This is a Brooklyn-bound.wav
 FILE	This is a Jamaica Center-bound E local train.wav
 FILE	This is a Jamaica Center-Parsons Archer-bound M train via the J line.wav
 FILE	This is a Jamaica Center-Parsons Archer-bound.wav
-FILE	This is a Jamaica-179 St-bound F express train.wav
-FILE	This is a Jamaica-179 St-bound F local train.wav
 FILE	This is a Manhattan-bound E express train.wav
 FILE	This is a Manhattan-bound E local train.wav
 FILE	This is a Manhattan-bound J express train.wav
