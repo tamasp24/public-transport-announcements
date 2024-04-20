@@ -1,19 +1,21 @@
 FOLDER	audios
 FOLDER	MTA
+FILE	and.wav
 FILE	bound.wav
 FILE	Do not walk between carriages.wav
 FILE	Ladies and gentlemen, after an earlier incident, trains are running at slower speeds. Please be patient.wav
 FILE	Ladies and Gentlemen, for your safety please do not block the doors while the train is in the station.wav
 FILE	Ladies and gentlemen, the train crew is investigating an equipment problem. Please be patient..wav
-FILE	The next and last stop is - Kathleen.wav
-FILE	The next and last stop is.wav
-FILE	The next stop is - Kathleen.wav
+FILE	The next and last stop is v1.wav
+FILE	The next and last stop is v2.wav
 FILE	The next stop is v1.wav
 FILE	The next stop is v2.wav
-FILE	This is - Kathleen.wav
+FILE	The next stop is v3.wav
+FILE	The next stop is v4.wav
 FILE	This is the last stop on the train. Please exit onto the platform so the train can get cleaned and get moving again.wav
 FILE	This is the last stop on this train. Everyone please leave the train. Thank you for riding with MTA.wav
-FILE	This is.wav
+FILE	This is v1.wav
+FILE	This is v2.wav
 FILE	This train is being diverted off is regular route. Please listen for train crew announcements.wav
 FILE	This train will be taken out of service at the next station. Please exit the train.wav
 FILE	Transfer is available to the.wav
@@ -27,10 +29,14 @@ FILE	This is a Brooklyn-bound E local train.wav
 FILE	This is a Brooklyn-bound J local train.wav
 FILE	This is a Brooklyn-bound J train.wav
 FILE	This is a Brooklyn-bound M local train.wav
+FILE	This is a Brooklyn-bound Z skip-stop train.wav
 FILE	This is a Brooklyn-bound.wav
 FILE	This is a Jamaica Center-bound E local train.wav
+FILE	This is a Jamaica Center-bound J skip-stop train.wav
 FILE	This is a Jamaica Center-Parsons Archer-bound M train via the J line.wav
+FILE	This is a Jamaica Center-Parsons Archer-bound R train via the E line.wav
 FILE	This is a Jamaica Center-Parsons Archer-bound.wav
+FILE	This is a Jamaica Center-Parsons Blvd-bound V train via the J local line.wav
 FILE	This is a Manhattan-bound E express train.wav
 FILE	This is a Manhattan-bound E local train.wav
 FILE	This is a Manhattan-bound J express train.wav
@@ -56,6 +62,7 @@ FOLDER	Kathleen
 FILE	This is a Bronx-bound.wav
 FILE	This is a Brooklyn-bound.wav
 FILE	This is a Far Rockaway-Mott Av-bound.wav
+FILE	This is a Jamaica Center-Parsons Archer-bound F train via the E line.wav
 FILE	This is a Jamaica-179 St-bound F express train.wav
 FILE	This is a Jamaica-179 St-bound F local train.wav
 FILE	This is a Jamaica-179 St-bound.wav
@@ -126,7 +133,7 @@ FILE	Connection is available to PATH trains.wav
 FILE	Connection is available to PATH.wav
 FILE	Connection is available to the Airtrain to JFK airport.wav
 FILE	Connection is available to the George Washington Bridge Bus Station.wav
-FILE	Connection is available to the LIRR, NJ Transit and Amtrak.wav
+FILE	Connection is available to the LIRR and the Airtrain to JFK Airport.wav
 FILE	Connection is available to the Port Authority Bus Terminal.wav
 FILE	Transfer is available to the 1 and C trains.wav
 FILE	Transfer is available to the 1, 2, 7, E, N and Q trains.wav
@@ -193,6 +200,7 @@ FILE	E mid.wav
 FILE	F line end.wav
 FILE	J express train end.wav
 FILE	J local train end.wav
+FILE	J skip-stop train.wav
 FILE	M local train end.wav
 FILE	M train end v2.wav
 FILE	M train end.wav
@@ -324,6 +332,7 @@ FILE	Seneca Av.wav
 FILE	Smith-9 Sts.wav
 FILE	Spring St.wav
 FILE	Sutphin Blvd-Archer Av-JFK.wav
+FILE	Sutphin Blvd-JFK Airport.wav
 FILE	Sutphin Blvd-JFK.wav
 FILE	Times Sq-42 St.wav
 FILE	Union St.wav
@@ -378,6 +387,7 @@ FILE	81 St-Museum of Natural History.wav
 FILE	86 St.wav
 FILE	88 St.wav
 FILE	96 St.wav
+FILE	A express train v2.wav
 FILE	Aqueduct-North Conduit.wav
 FILE	Avenue I.wav
 FILE	Avenue N.wav
@@ -443,6 +453,7 @@ FILE	Roosevelt Island.wav
 FILE	Shepherd Av.wav
 FILE	Smith-9 Sts.wav
 FILE	Spring St.wav
+FILE	Sutphin Blvd-Archer Av-JFK Airport.wav
 FILE	Sutphin Blvd.wav
 FILE	Tremont Av.wav
 FILE	Utica Av.wav
