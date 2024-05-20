@@ -36,6 +36,7 @@
 	let programmes: Programme[] = [];
 	let selectedProgramme: string = '';
 	let queue: string[] = [];
+	let programmeRouteList: string[] = [];
 	let programmeQueue: string[] = [];
 	let programmeStations: Programme[] = [];
 	let programmeCurrentStation: string = '';
@@ -210,8 +211,10 @@
 	$: if ($filesQuery.isSuccess) announcementPacks = processFileList($filesQuery.data);
 	$: if (announcementPacks.length > 0)
 		fileList = announcementPacks.filter((p) => p.name === selectedPack)[0].files;
-	$: if ($programmesQuery.isSuccess)
+	$: if ($programmesQuery.isSuccess) {
 		programmes = Papa.parse($programmesQuery.data, { header: true }).data;
+		programmeRouteList = [...new Set(programmes.map((p) => p.Route))];
+	}
 	$: if (selectedProgramme)
 		programmeStations = programmes.filter((p) => p.Route === selectedProgramme);
 	$: console.log(programmeQueue);
@@ -338,9 +341,9 @@
 
 				<div class="mt-20">
 					<Select
-						items="{programmes.map((p) => ({
-							name: `${p.Route}`,
-							value: p.Route
+						items="{programmeRouteList.map((p) => ({
+							name: `${p}`,
+							value: p
 						}))}"
 						bind:value="{selectedProgramme}"
 					/>
