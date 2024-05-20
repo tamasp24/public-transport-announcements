@@ -3,6 +3,7 @@
 	import axios from 'axios';
 	import { createQuery } from '@tanstack/svelte-query';
 	import Crunker from 'crunker';
+	import Papa from 'papaparse';
 
 	// UI COMPONENTS
 	import { Button, Input, Range, Select } from 'flowbite-svelte';
@@ -19,8 +20,26 @@
 		files: string[];
 	};
 
+	type Programme = {
+		Route: string;
+		Station: string;
+		'On Approach': string;
+		'At Station': string;
+		Terminating: string;
+		'Transfer 1': string;
+		'Transfer 2': string;
+		'Transfer 3': string;
+		Root: string;
+	};
+
 	let announcementPacks = [];
+	let programmes: Programme[] = [];
+	let selectedProgramme: string = '';
 	let queue: string[] = [];
+	let programmeQueue: string[] = [];
+	let programmeStations: Programme[] = [];
+	let programmeCurrentStation: string = '';
+	let playbackType: 'normal' | 'programme' = 'normal';
 	let announcementAudio = new Audio();
 	let previewAudio = new Audio();
 	let playbackVolume: number = 0.3;
@@ -37,6 +56,10 @@
 	const filesQuery = createQuery<string>({
 		queryKey: ['audio-files'],
 		queryFn: async () => await axios.get(`${filePathRoot}/files.txt`).then((r) => r.data)
+	});
+	const programmesQuery = createQuery<string>({
+		queryKey: ['programmes'],
+		queryFn: async () => await axios.get(`${filePathRoot}/Programmes.csv`).then((r) => r.data)
 	});
 
 	const playAudio = (filePath: string) => {
@@ -62,6 +85,7 @@
 	};
 
 	const playQueue = () => {
+		playbackType = 'normal';
 		let index = 0;
 
 		playAudio(queue[index]);
@@ -71,6 +95,26 @@
 
 			if (index < queue.length) {
 				playAudio(queue[index]);
+				return;
+			}
+
+			currentlyPlayingFile = '';
+			announcementAudio.pause();
+			announcementAudio.currentTime = 0;
+		};
+	};
+
+	const playProgrammeQueue = () => {
+		playbackType = 'programme';
+		let index = 0;
+
+		playAudio(`${filePathRoot}/${programmeStations[0].Root}/${programmeQueue[index]}.wav`);
+
+		announcementAudio.onended = () => {
+			index++;
+
+			if (index < programmeQueue.length) {
+				playAudio(`${filePathRoot}/${programmeStations[0].Root}/${programmeQueue[index]}.wav`);
 				return;
 			}
 
@@ -147,9 +191,30 @@
 		selectedPhrase = '';
 	};
 
+	const programmeOnApproach = () => {
+		programmeQueue = programmes
+			.filter((p) => p.Station === programmeCurrentStation)[0]
+			['On Approach'].split(';');
+
+		playProgrammeQueue();
+	};
+
+	const programmeAtStation = () => {
+		programmeQueue = programmes
+			.filter((p) => p.Station === programmeCurrentStation)[0]
+			['At Station'].split(';');
+
+		playProgrammeQueue();
+	};
+
 	$: if ($filesQuery.isSuccess) announcementPacks = processFileList($filesQuery.data);
 	$: if (announcementPacks.length > 0)
 		fileList = announcementPacks.filter((p) => p.name === selectedPack)[0].files;
+	$: if ($programmesQuery.isSuccess)
+		programmes = Papa.parse($programmesQuery.data, { header: true }).data;
+	$: if (selectedProgramme)
+		programmeStations = programmes.filter((p) => p.Route === selectedProgramme);
+	$: console.log(programmeQueue);
 </script>
 
 <div class="h-full p-5">
@@ -270,6 +335,28 @@
 					><div class="size-[20px]"><IoMdDownload /></div>
 					Merge & Save</Button
 				>
+
+				<div class="mt-20">
+					<Select
+						items="{programmes.map((p) => ({
+							name: `${p.Route}`,
+							value: p.Route
+						}))}"
+						bind:value="{selectedProgramme}"
+					/>
+					{#if programmeStations.length > 0}
+						<Select
+							items="{programmeStations.map((s) => ({
+								name: `${s.Station}`,
+								value: s.Station
+							}))}"
+							bind:value="{programmeCurrentStation}"
+						/>
+					{/if}
+					<Button on:click="{programmeOnApproach}">On Approach</Button>
+					<Button on:click="{programmeAtStation}">At Station</Button>
+					<div class="flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black"></div>
+				</div>
 			</div>
 			<div>
 				<h4 class="text-center">
