@@ -236,9 +236,9 @@
 					{/if}
 				</div>
 				{#if selectedPhrase || selectedInsertIndex !== undefined}
-					<Button color="red" on:click="{removeSelection}" outline>Remove Selection</Button>
+					<Button color="red" on:click="{removeSelection}" outline>Deselect</Button>
 					<Button color="red" on:click="{deleteSelectedPhrase}" disabled="{!selectedPhrase}"
-						>Delete Selected Phrase</Button
+						>Remove Selected Phrase</Button
 					>
 				{:else}
 					<i>Click on a phrase to replace it.</i>
@@ -273,11 +273,11 @@
 			</div>
 			<div>
 				<h4 class="text-center">
-					The MTA announcements are de-noised fragments from <a
+					The MTA announcements are from <a
 						href="https://www.youtube.com/@MrRailfan"
 						target="_blank">MrRailfan</a
 					>'s videos. The Northern Line extension and Southeastern announcements were released under
-					the FOI and are for personal use only.
+					the Freedom of Information Act and are for personal use only.
 				</h4>
 			</div>
 		</div>
