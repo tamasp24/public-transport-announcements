@@ -4,6 +4,7 @@ node_modules
 /.svelte-kit
 /package
 /static/audios/Programmes.xlsx
+/static/audios/Programmes 1.xlsx
 .env
 .env.*
 !.env.example
