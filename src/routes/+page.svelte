@@ -349,7 +349,7 @@
 
 				<div class="mt-20">
 					<Select
-						items="{programmeRouteList.map((p) => ({
+						items="{programmeRouteList.sort().map((p) => ({
 							name: `${p}`,
 							value: p
 						}))}"
