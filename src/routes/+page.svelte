@@ -39,7 +39,7 @@
 	let programmeRouteList: string[] = [];
 	let programmeQueue: string[] = [];
 	let programmeStations: Programme[] = [];
-	let programmeCurrentStation: string = '';
+	let programmeCurrentStation: Programme | null = null;
 	let playbackType: 'normal' | 'programme' = 'normal';
 	let announcementAudio = new Audio();
 	let previewAudio = new Audio();
@@ -194,7 +194,7 @@
 
 	const programmeOnApproach = () => {
 		programmeQueue = programmes
-			.filter((p) => p.Station === programmeCurrentStation)[0]
+			.filter((p) => p.Station === programmeCurrentStation.Station)[0]
 			['On Approach'].split(';');
 
 		playProgrammeQueue();
@@ -202,8 +202,16 @@
 
 	const programmeAtStation = () => {
 		programmeQueue = programmes
-			.filter((p) => p.Station === programmeCurrentStation)[0]
+			.filter((p) => p.Station === programmeCurrentStation.Station)[0]
 			['At Station'].split(';');
+
+		playProgrammeQueue();
+	};
+
+	const programmeTerminating = () => {
+		programmeQueue = programmes
+			.filter((p) => p.Station === programmeCurrentStation.Station)[0]
+			.Terminating.split(';');
 
 		playProgrammeQueue();
 	};
@@ -211,13 +219,13 @@
 	$: if ($filesQuery.isSuccess) announcementPacks = processFileList($filesQuery.data);
 	$: if (announcementPacks.length > 0)
 		fileList = announcementPacks.filter((p) => p.name === selectedPack)[0].files;
+	// IF PROGRAMMES.CSV IS LOADED
 	$: if ($programmesQuery.isSuccess) {
-		programmes = Papa.parse($programmesQuery.data, { header: true }).data;
+		programmes = Papa.parse($programmesQuery.data, { header: true, skipEmptyLines: true }).data;
 		programmeRouteList = [...new Set(programmes.map((p) => p.Route))];
 	}
 	$: if (selectedProgramme)
 		programmeStations = programmes.filter((p) => p.Route === selectedProgramme);
-	$: console.log(programmeQueue);
 </script>
 
 <div class="h-full p-5">
@@ -351,13 +359,26 @@
 						<Select
 							items="{programmeStations.map((s) => ({
 								name: `${s.Station}`,
-								value: s.Station
+								value: s
 							}))}"
 							bind:value="{programmeCurrentStation}"
 						/>
 					{/if}
-					<Button on:click="{programmeOnApproach}">On Approach</Button>
-					<Button on:click="{programmeAtStation}">At Station</Button>
+					<Button
+						on:click="{programmeOnApproach}"
+						disabled="{!programmeCurrentStation || !programmeCurrentStation['On Approach']}"
+						>On Approach</Button
+					>
+					<Button
+						on:click="{programmeAtStation}"
+						disabled="{!programmeCurrentStation || !programmeCurrentStation['At Station']}"
+						>At Station</Button
+					>
+					<Button
+						on:click="{programmeTerminating}"
+						disabled="{!programmeCurrentStation || !programmeCurrentStation.Terminating}"
+						>Terminating</Button
+					>
 					<div class="flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black"></div>
 				</div>
 			</div>
