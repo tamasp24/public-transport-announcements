@@ -70,7 +70,7 @@
 	};
 
 	const playPreview = (filePath: string) => {
-		previewAudio.src = `${filePath}`;
+		previewAudio.src = filePath;
 		previewAudio.play();
 	};
 
