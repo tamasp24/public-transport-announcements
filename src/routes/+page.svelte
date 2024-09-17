@@ -211,7 +211,7 @@
 	const programmeTerminating = () => {
 		programmeQueue = programmes
 			.filter((p) => p.Station === programmeCurrentStation.Station)[0]
-			.Terminating.split(';');
+			['Terminating'].split(';');
 
 		playProgrammeQueue();
 	};
@@ -243,25 +243,26 @@
 					bind:value="{selectedPack}"
 				/>
 				<Input class="sticky top-0" bind:value="{search}" placeholder="Search..." />
-				{#if $filesQuery.isLoading || $filesQuery.isFetching}
+				{#if $filesQuery.isFetching}
 					<span>Loading...</span>
 				{:else if fileList.length > 0}
 					{#each fileList
 						.filter((f) => f.toLowerCase().includes(search.toLowerCase()))
 						.sort() as file}
+						{@const fileName = file.split('/').pop().replace('.wav', '')}
 						<div class="flex items-center justify-between gap-2 rounded-lg bg-gray-700 p-1">
 							<Button class="h-full" size="xs" on:click="{() => playPreview(`${file}`)}"
 								><div class="size-[20px]"><IoIosPlay /></div></Button
 							>
 							<div class="flex flex-col align-middle">
-								<span class="text-center">{file.split('/').pop().replace('.wav', '')}</span>
+								<span class="text-center">{fileName}</span>
 								<small>{file.split('/').slice(-2)[0]}</small>
 							</div>
 							{#if !selectedPhrase}
 								<Button class="h-full" color="green" size="xs" on:click="{() => addToQueue(file)}"
 									><div class="size-[20px]"><IoIosAdd /></div></Button
 								>
-							{:else if selectedPhrase}
+							{:else}
 								<Button
 									class="h-full"
 									color="green"
@@ -281,6 +282,7 @@
 				<div class="my-2 flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black">
 					{#if queue.length > 0}
 						{#each queue as file, index}
+							{@const fileName = file.split('/').pop().replace('.wav', '')}
 							<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
 							{#if queue.length > 0 && announcementAudio.paused && index !== selectedInsertIndex}
 								<div
@@ -299,11 +301,11 @@
 							<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
 							<span on:click="{() => (selectedPhrase = file)}" class="mx-1 cursor-pointer">
 								{#if currentlyPlayingFile === file}
-									<b class="bg-sky-300">{file.split('/').pop().replace('.wav', '')}</b>
+									<b class="bg-sky-300">{fileName}</b>
 								{:else if selectedPhrase === file}
-									<b class="bg-orange-300">{file.split('/').pop().replace('.wav', '')}</b>
+									<b class="bg-orange-300">{fileName}</b>
 								{:else}
-									{file.split('/').pop().replace('.wav', '')}
+									{fileName}
 								{/if}
 							</span>
 						{/each}
@@ -311,7 +313,7 @@
 						<i>The queue is empty.</i>
 					{/if}
 				</div>
-				{#if selectedPhrase || selectedInsertIndex !== undefined}
+				{#if selectedPhrase || selectedInsertIndex}
 					<Button color="red" on:click="{removeSelection}" outline>Deselect</Button>
 					<Button color="red" on:click="{deleteSelectedPhrase}" disabled="{!selectedPhrase}"
 						>Remove Selected Phrase</Button
@@ -348,37 +350,57 @@
 				>
 
 				<div class="mt-20">
-					<Select
-						items="{programmeRouteList.sort().map((p) => ({
-							name: `${p}`,
-							value: p
-						}))}"
-						bind:value="{selectedProgramme}"
-					/>
-					{#if programmeStations.length > 0}
-						<Select
-							items="{programmeStations.map((s) => ({
-								name: `${s.Station}`,
-								value: s
-							}))}"
-							bind:value="{programmeCurrentStation}"
-						/>
-					{/if}
-					<Button
-						on:click="{programmeOnApproach}"
-						disabled="{!programmeCurrentStation || !programmeCurrentStation['On Approach']}"
-						>On Approach</Button
-					>
-					<Button
-						on:click="{programmeAtStation}"
-						disabled="{!programmeCurrentStation || !programmeCurrentStation['At Station']}"
-						>At Station</Button
-					>
-					<Button
-						on:click="{programmeTerminating}"
-						disabled="{!programmeCurrentStation || !programmeCurrentStation.Terminating}"
-						>Terminating</Button
-					>
+					<div class="flex gap-4">
+						<div class="flex flex-col">
+							<!-- svelte-ignore a11y-label-has-associated-control -->
+							<label>
+								<span>
+									<b>Route</b>
+								</span>
+								<Select
+									items="{programmeRouteList.sort().map((p) => ({
+										name: `${p}`,
+										value: p
+									}))}"
+									bind:value="{selectedProgramme}"
+								/>
+							</label>
+						</div>
+						{#if programmeStations.length > 0}
+							<div class="flex flex-col">
+								<!-- svelte-ignore a11y-label-has-associated-control -->
+								<label>
+									<span>
+										<b>Station</b>
+									</span>
+									<Select
+										items="{programmeStations.map((s) => ({
+											name: `${s.Station}`,
+											value: s
+										}))}"
+										bind:value="{programmeCurrentStation}"
+									/>
+								</label>
+							</div>
+						{/if}
+					</div>
+					<div class="my-2 flex gap-4">
+						<Button
+							on:click="{programmeOnApproach}"
+							disabled="{!programmeCurrentStation || !programmeCurrentStation['On Approach']}"
+							>On Approach</Button
+						>
+						<Button
+							on:click="{programmeAtStation}"
+							disabled="{!programmeCurrentStation || !programmeCurrentStation['At Station']}"
+							>At Station</Button
+						>
+						<Button
+							on:click="{programmeTerminating}"
+							disabled="{!programmeCurrentStation || !programmeCurrentStation.Terminating}"
+							>Terminating</Button
+						>
+					</div>
 					<div class="flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black"></div>
 				</div>
 			</div>
