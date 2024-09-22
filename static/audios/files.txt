@@ -466,6 +466,66 @@ FILE	York St.wav
 TOTAL	Kathleen\
 TOTAL	Stations\
 TOTAL	MTA\
+FOLDER	MTA - high quality
+FILE	The next stop is v2.wav
+FILE	This is a Brooklyn-bound E local train.wav
+FILE	This is a Manhattan-bound E express train.wav
+FILE	This is a Manhattan-bound E local train.wav
+FILE	This is a World Trade Center-bound E train.wav
+FILE	This is.wav
+FILE	via the A line.wav.wav
+FILE	via the B line.wav.wav
+FILE	via the F line.wav.wav
+FILE	via the J line.wav.wav
+FILE	via the N line.wav.wav
+FOLDER	Destinations
+FILE	This is a WTC-bound E train.wav
+TOTAL	Destinations\
+FOLDER	Interchanges
+FILE	Connection to PABT.wav
+FILE	Transfer is available to the Manhattan-bound F train.wav
+FILE	Transfer is available to the Q44 SBS.wav
+TOTAL	Interchanges\
+FOLDER	Stations
+FILE	14 St-Union Sq.wav
+FILE	14 St.wav
+FILE	175 St.wav
+FILE	190 St.wav
+FILE	20  Av.wav
+FILE	21 St-Queensbridge.wav
+FILE	23 St v2.wav
+FILE	23 St.wav
+FILE	28 St.wav
+FILE	34 St-Herald Sq v2.wav
+FILE	34 St-Herald Sq.wav
+FILE	4 Av-9 St.wav
+FILE	42 St-Bryant Pk.wav
+FILE	42 St-Port Authority Bus Terminal.wav
+FILE	49 St.wav
+FILE	8 Av.wav
+FILE	8 St-NYU.wav
+FILE	Briarwood.wav
+FILE	Bway-Lafayette St.wav
+FILE	Canal St v1.wav
+FILE	Chambers St.wav
+FILE	Cortlandt St.wav
+FILE	Jamaica-Van Wyck.wav
+FILE	Kew Gardens-Union Tpke.wav
+FILE	Kings Hwy.wav
+FILE	Kosciuszko St.wav
+FILE	Lexington Av-53 St.wav
+FILE	Lexington Av-59 St.wav
+FILE	Marcy Av.wav
+FILE	Myrtle Av-Bway.wav
+FILE	Rector St.wav
+FILE	Sutphin-Archer-JFK.wav
+FILE	Times Sq-42 St.wav
+FILE	Whitehall St.wav
+FILE	Woodhaven v1.wav
+FILE	Woodhaven v2.wav
+FILE	WTC.wav
+TOTAL	Stations\
+TOTAL	MTA - high quality\
 FOLDER	TfL - Northern Line Extension 2021
 FOLDER	Destination
 FILE	4058.wav
