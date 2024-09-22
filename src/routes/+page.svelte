@@ -194,7 +194,11 @@
 
 	const programmeOnApproach = () => {
 		programmeQueue = programmes
-			.filter((p) => p.Station === programmeCurrentStation.Station)[0]
+			.filter(
+				(p) =>
+					p.Route === programmeCurrentStation?.Route &&
+					p.Station === programmeCurrentStation.Station
+			)[0]
 			['On Approach'].split(';');
 
 		playProgrammeQueue();
@@ -202,7 +206,11 @@
 
 	const programmeAtStation = () => {
 		programmeQueue = programmes
-			.filter((p) => p.Station === programmeCurrentStation.Station)[0]
+			.filter(
+				(p) =>
+					p.Route === programmeCurrentStation?.Route &&
+					p.Station === programmeCurrentStation.Station
+			)[0]
 			['At Station'].split(';');
 
 		playProgrammeQueue();
@@ -210,7 +218,11 @@
 
 	const programmeTerminating = () => {
 		programmeQueue = programmes
-			.filter((p) => p.Station === programmeCurrentStation.Station)[0]
+			.filter(
+				(p) =>
+					p.Route === programmeCurrentStation?.Route &&
+					p.Station === programmeCurrentStation.Station
+			)[0]
 			['Terminating'].split(';');
 
 		playProgrammeQueue();
