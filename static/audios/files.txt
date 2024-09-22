@@ -467,7 +467,7 @@ TOTAL	Kathleen\
 TOTAL	Stations\
 TOTAL	MTA\
 FOLDER	MTA - high quality
-FILE	The next stop is v2.wav
+FILE	The next stop is v1.wav
 FILE	This is a Brooklyn-bound E local train.wav
 FILE	This is a Manhattan-bound E express train.wav
 FILE	This is a Manhattan-bound E local train.wav
