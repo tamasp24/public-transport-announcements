@@ -339,25 +339,26 @@
 						{@const fileName = file.split('/').pop().replace('.wav', '')}
 						{@const directParentDir = file.split('/').slice(-2)[0]}
 						<div class="flex items-center justify-between gap-2 rounded-lg bg-gray-700 p-1">
-							<Button class="h-full" size="xs" on:click={() => playPreview(`${file}`)}
-								><div class="size-[20px]"><IoIosPlay /></div></Button
-							>
+							<Button class="h-full" size="xs" on:click={() => playPreview(`${file}`)}>
+								<div class="size-[20px]"><IoIosPlay /></div>
+							</Button>
 							<div class="flex flex-col text-center align-middle">
 								<span>{fileName}</span>
 								<small>{directParentDir}</small>
 							</div>
 							{#if !selectedPhrase}
-								<Button class="h-full" color="green" size="xs" on:click={() => addToQueue(file)}
-									><div class="size-[20px]"><IoIosAdd /></div></Button
-								>
+								<Button class="h-full" color="green" size="xs" on:click={() => addToQueue(file)}>
+									<div class="size-[20px]"><IoIosAdd /></div>
+								</Button>
 							{:else}
 								<Button
 									class="h-full"
 									color="green"
 									size="xs"
 									on:click={replaceSelectedPhrase(file)}
-									><div class="size-[20px]"><IoIosRepeat /></div></Button
 								>
+									<div class="size-[20px]"><IoIosRepeat /></div>
+								</Button>
 							{/if}
 						</div>
 					{/each}
@@ -401,9 +402,9 @@
 				</div>
 				{#if selectedPhrase || selectedInsertIndex}
 					<Button color="red" on:click={removeSelection} outline>Deselect</Button>
-					<Button color="red" on:click={deleteSelectedPhrase} disabled={!selectedPhrase}
-						>Remove Selected Phrase</Button
-					>
+					<Button color="red" on:click={deleteSelectedPhrase} disabled={!selectedPhrase}>
+						Remove Selected Phrase
+					</Button>
 				{:else}
 					<i>Click on a phrase to replace it.</i>
 				{/if}
@@ -412,28 +413,29 @@
 					<Range min="0" max="1" step="0.01" bind:value={playbackVolume} />
 				</div>
 				{#if !currentlyPlayingFile || announcementAudio.paused}
-					<Button on:click={playQueue} disabled={queue.length === 0}
-						><div class="size-[20px]"><IoIosPlay /></div>
-						Play Announcement</Button
-					>
+					<Button on:click={playQueue} disabled={queue.length === 0}>
+						<div class="size-[20px]"><IoIosPlay /></div>
+						Play Announcement
+					</Button>
 				{:else}
-					<Button on:click={stopPlayback}
-						><div class="size-[20px]"><IoMdSquare /></div>
-						Stop Playback</Button
-					>
+					<Button on:click={stopPlayback}>
+						<div class="size-[20px]"><IoMdSquare /></div>
+						Stop Playback
+					</Button>
 				{/if}
 				<Button
 					color="red"
 					on:click={clearQueue}
 					disabled={queue.length === 0 || !announcementAudio.paused}
 					outline
-					><div class="size-[20px]"><IoIosClose /></div>
-					Clear Queue</Button
 				>
-				<Button color="purple" on:click={concatenateAudio} disabled={queue.length === 0}
-					><div class="size-[20px]"><IoMdDownload /></div>
-					Merge & Save</Button
-				>
+					<div class="size-[20px]"><IoIosClose /></div>
+					Clear Queue
+				</Button>
+				<Button color="purple" on:click={concatenateAudio} disabled={queue.length === 0}>
+					<div class="size-[20px]"><IoMdDownload /></div>
+					Merge & Save
+				</Button>
 
 				<div class="mt-20">
 					<div class="flex gap-4">
@@ -475,38 +477,43 @@
 								!isCurrentProgrammeStationIndexWithinBounds(
 									programmeStationIndex(programmeCurrentStation?.Station) - 1
 								)}
-							><div class="size-[20px]"><IoIosArrowBack /></div>
-							Go to Previous Station</Button
 						>
+							<div class="size-[20px]"><IoIosArrowBack /></div>
+							Go to Previous Station
+						</Button>
 						<Button
 							on:click={programmeOnApproach}
 							disabled={!programmeCurrentStation || !programmeCurrentStation['On Approach']}
-							>On Approach</Button
 						>
+							On Approach
+						</Button>
 						<Button
 							on:click={programmeAtStation}
 							disabled={!programmeCurrentStation || !programmeCurrentStation['At Station']}
-							>At Station</Button
 						>
+							At Station
+						</Button>
 						<Button
 							on:click={programmeTerminating}
 							disabled={!programmeCurrentStation || !programmeCurrentStation.Terminating}
-							>Terminating</Button
 						>
+							Terminating
+						</Button>
 						<Button
 							on:click={programmeGoToNextStation}
 							disabled={!programmeCurrentStation ||
 								!isCurrentProgrammeStationIndexWithinBounds(
 									programmeStationIndex(programmeCurrentStation?.Station) + 1
 								)}
-							>Go to Next Station
-							<div class="size-[20px]"><IoIosArrowForward /></div></Button
 						>
+							Go to Next Station
+							<div class="size-[20px]"><IoIosArrowForward /></div>
+						</Button>
 					</div>
 					<div class="flex-column my-2 flex">
-						<Checkbox bind:checked={playAnnouncementOnProgrammeStationChange}
-							>Play On Approach announcement when skipping to station</Checkbox
-						>
+						<Checkbox bind:checked={playAnnouncementOnProgrammeStationChange}>
+							Play On Approach announcement when skipping to station
+						</Checkbox>
 					</div>
 					<div class="flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black"></div>
 				</div>
@@ -515,8 +522,11 @@
 				<h4 class="text-center">
 					The MTA announcements are from <a
 						href="https://www.youtube.com/@MrRailfan"
-						target="_blank">MrRailfan</a
-					>'s videos. The Northern Line extension and Southeastern announcements were released under
+						target="_blank"
+					>
+						MrRailfan
+					</a>
+					's videos. The Northern Line extension and Southeastern announcements were released under
 					the Freedom of Information Act and are for personal use only.
 				</h4>
 			</div>
