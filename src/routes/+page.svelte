@@ -364,7 +364,7 @@
 				{/if}
 			</div>
 		</div>
-		<div class="flex h-full w-[70%] flex-col justify-between">
+		<div class="flex h-full w-full flex-col justify-between overflow-y-auto overflow-x-hidden pr-7">
 			<div>
 				<h4 class="font-bold">Message</h4>
 				<div class="my-2 flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black">
