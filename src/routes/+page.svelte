@@ -32,27 +32,6 @@
 		Root: string;
 	};
 
-	let announcementPacks = [];
-	let programmes: Programme[] = [];
-	let selectedProgramme: string = '';
-	let queue: string[] = [];
-	let programmeRouteList: string[] = [];
-	let programmeQueue: string[] = [];
-	let programmeStations: Programme[] = [];
-	let programmeCurrentStation: Programme | null = null;
-	let playbackType: 'normal' | 'programme' = 'normal';
-	let announcementAudio = new Audio();
-	let previewAudio = new Audio();
-	let playbackVolume: number = 0.3;
-	let search: string = '';
-	let fileList: string[] = [];
-	let currentlyPlayingFile: string = '';
-	let selectedPack: string = 'MTA';
-	let selectedPhrase: string = '';
-	let selectedInsertIndex: number | undefined = undefined;
-
-	$: announcementAudio.volume = previewAudio.volume = playbackVolume;
-
 	const filePathRoot: string = '/audios/';
 	const filesQuery = createQuery<string>({
 		queryKey: ['audio-files'],
@@ -62,6 +41,41 @@
 		queryKey: ['programmes'],
 		queryFn: async () => await axios.get(`${filePathRoot}/Programmes.csv`).then((r) => r.data)
 	});
+
+	let announcementPacks = $derived.by(() => {
+		if($filesQuery.isSuccess) return processFileList($filesQuery.data);
+		else return []
+	});
+	let programmes: Programme[] = $derived.by(() => {
+		if($programmesQuery.isSuccess) return Papa.parse($programmesQuery.data, { header: true, skipEmptyLines: true }).data;
+		else return [];
+	});
+	let selectedProgramme: string = $state('');
+	let queue: string[] = $state([]);
+	let programmeRouteList: string[] = $derived([...new Set(programmes.map((p) => p.Route))]);
+	let programmeQueue: string[] = $state([]);
+	let programmeStations: Programme[] = $derived(programmes.filter((p) => p.Route === selectedProgramme));
+	let programmeCurrentStation: Programme | null = $state(null);
+	let playbackType: 'normal' | 'programme' = $state('normal');
+	let announcementAudio = new Audio();
+	let previewAudio = new Audio();
+	let playbackVolume: number = $state(0.3);
+	let search: string = $state('');
+	let fileList: string[] = $derived.by(() =>{
+		if(announcementPacks.length > 0) return announcementPacks.filter((p) => p.name === selectedPack)[0].files;
+		else return [];
+	});
+	const fileListFilteredBySearchField = $derived(fileList.filter((f) => f.toLowerCase().includes(search.toLowerCase())).sort());
+	let currentlyPlayingFile: string = $state('');
+	let selectedPack: string = $state('MTA');
+	let selectedPhrase: string = $state('');
+	let selectedInsertIndex: number | undefined = $state(undefined);
+
+	$effect(() => {
+		/* ANNOUNCEMENT AND PREVIEW AUDIO VARS ARE THE SAME BUT ARE KEPT SEPARATE
+		FOR EASIER FUTURE MANAGEMENT */
+		announcementAudio.volume = previewAudio.volume = playbackVolume;
+	})
 
 	const playAudio = (filePath: string) => {
 		announcementAudio.src = `${filePath}`;
@@ -74,6 +88,8 @@
 		previewAudio.play();
 	};
 
+	/* INSERT PHRASE AT SELECTED INDEX IF A PHRASE HAS BEEN CLICKED ON,
+	OTHERWISE APPEND IT TO THE END */
 	const addToQueue = (fileName: string) => {
 		queue = queue.toSpliced(selectedInsertIndex ?? queue.length, 0, fileName);
 		selectedInsertIndex = undefined;
@@ -125,6 +141,15 @@
 		};
 	};
 
+	/*	PROCESS FILE LIST INTO PACKS
+		FILE LIST EXPORTED VIA KAREN'S DIRECTORY PRINTER:
+			- SELECT 'AUDIOS' FOLDER
+			- SAVE OPTIONS: BOTH FILES & FOLDERS; TICK ALL 4 BOXES BELOW; OMIT COMMENT LINES; FILE INFO: FILE NAME ONLY
+		SCAN EACH LINE, CHECK IF LINE STARTS WITH 'FOLDER', 'TOTAL' OR 'FILE'
+		- IF 'TOTAL' OR 'FOLDER': APPEND DIRECTORY NAME TO CURRENT PATH
+		- IF ABOVE CONDITION AND LAST CHAR IS BACKSLASH: SUBTRACT IT FROM CURRENT PATH (= GOING UP ONE FOLDER)
+		- IF 'FILE': APPEND FILE NAME TO CURRENT PATH AND PUSH TO ARRAY
+	*/
 	const processFileList = (file: string): Pack[] => {
 		let files: string[] = [];
 		let lines = file.split('\r\n');
@@ -144,6 +169,9 @@
 			}
 		});
 
+		/*	ORGANISE FILES INTO PACKS
+			PACK NAMES ARE DERIVED FROM THE FOLDER NAMES INSIDE 'AUDIOS'
+		*/
 		let packsNames = [...new Set(files.map((file) => file.split('/')[1]))];
 		let packs = packsNames.map((pack) => {
 			return {
@@ -227,17 +255,6 @@
 
 		playProgrammeQueue();
 	};
-
-	$: if ($filesQuery.isSuccess) announcementPacks = processFileList($filesQuery.data);
-	$: if (announcementPacks.length > 0)
-		fileList = announcementPacks.filter((p) => p.name === selectedPack)[0].files;
-	// IF PROGRAMMES.CSV IS LOADED
-	$: if ($programmesQuery.isSuccess) {
-		programmes = Papa.parse($programmesQuery.data, { header: true, skipEmptyLines: true }).data;
-		programmeRouteList = [...new Set(programmes.map((p) => p.Route))];
-	}
-	$: if (selectedProgramme)
-		programmeStations = programmes.filter((p) => p.Route === selectedProgramme);
 </script>
 
 <div class="h-full p-5">
@@ -258,17 +275,16 @@
 				{#if $filesQuery.isFetching}
 					<span>Loading...</span>
 				{:else if fileList.length > 0}
-					{#each fileList
-						.filter((f) => f.toLowerCase().includes(search.toLowerCase()))
-						.sort() as file}
+					{#each fileListFilteredBySearchField as file}
 						{@const fileName = file.split('/').pop().replace('.wav', '')}
+						{@const directParentDir = file.split('/').slice(-2)[0]}
 						<div class="flex items-center justify-between gap-2 rounded-lg bg-gray-700 p-1">
 							<Button class="h-full" size="xs" on:click="{() => playPreview(`${file}`)}"
 								><div class="size-[20px]"><IoIosPlay /></div></Button
 							>
 							<div class="flex flex-col align-middle">
 								<span class="text-center">{fileName}</span>
-								<small>{file.split('/').slice(-2)[0]}</small>
+								<small>{directParentDir}</small>
 							</div>
 							{#if !selectedPhrase}
 								<Button class="h-full" color="green" size="xs" on:click="{() => addToQueue(file)}"
@@ -337,7 +353,7 @@
 					<h4 class="my-2 font-bold">Playback volume: {(playbackVolume * 100).toFixed(0)}%</h4>
 					<Range min="0" max="1" step="0.01" bind:value="{playbackVolume}" />
 				</div>
-				{#if announcementAudio.paused}
+				{#if !currentlyPlayingFile || announcementAudio.paused}
 					<Button on:click="{playQueue}" disabled="{queue.length === 0}"
 						><div class="size-[20px]"><IoIosPlay /></div>
 						Play Announcement</Button
