@@ -80,6 +80,10 @@
 		/* ANNOUNCEMENT AND PREVIEW AUDIO VARS ARE THE SAME BUT ARE KEPT SEPARATE
 		FOR EASIER FUTURE MANAGEMENT */
 		announcementAudio.volume = previewAudio.volume = playbackVolume;
+
+		if(selectedProgramme) {
+			programmeCurrentStation = programmeStations[0];
+		}
 	})
 
 	const playAudio = (filePath: string) => {
@@ -314,7 +318,7 @@
 					}))}"
 					bind:value="{selectedPack}"
 				/>
-				<Input class="sticky top-0" bind:value="{search}" placeholder="Search..." />
+				<Input type="text" class="sticky top-0" bind:value="{search}" placeholder="Search..." />
 				{#if $filesQuery.isFetching}
 					<span>Loading...</span>
 				{:else if fileList.length > 0}
