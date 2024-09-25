@@ -6,13 +6,17 @@
 	import Papa from 'papaparse';
 
 	// UI COMPONENTS
-	import { Button, Input, Range, Select } from 'flowbite-svelte';
+	import { Button, Input, Range, Select, Checkbox } from 'flowbite-svelte';
+	
+	// ICONS REFERENCE: 
 	import IoIosPlay from 'svelte-icons/io/IoIosPlay.svelte';
 	import IoMdSquare from 'svelte-icons/io/IoMdSquare.svelte';
 	import IoIosAdd from 'svelte-icons/io/IoIosAdd.svelte';
 	import IoIosClose from 'svelte-icons/io/IoIosClose.svelte';
 	import IoMdDownload from 'svelte-icons/io/IoMdDownload.svelte';
 	import IoIosRepeat from 'svelte-icons/io/IoIosRepeat.svelte';
+	import IoIosArrowForward from 'svelte-icons/io/IoIosArrowForward.svelte';
+	import IoIosArrowBack from 'svelte-icons/io/IoIosArrowBack.svelte';
 	import MdSubdirectoryArrowLeft from 'svelte-icons/md/MdSubdirectoryArrowLeft.svelte';
 
 	type Pack = {
@@ -56,6 +60,7 @@
 	let programmeQueue: string[] = $state([]);
 	let programmeStations: Programme[] = $derived(programmes.filter((p) => p.Route === selectedProgramme));
 	let programmeCurrentStation: Programme | null = $state(null);
+	let playAnnouncementOnProgrammeStationChange: boolean = $state(false);
 	let playbackType: 'normal' | 'programme' = $state('normal');
 	let announcementAudio = new Audio();
 	let previewAudio = new Audio();
@@ -261,7 +266,13 @@
 		// FIND INDEX OF CURRENT STATION BY NAME, THEN SUBTRACT 1 FROM THE RETURNED VALUE
 		let indexOfPreviousStation = programmeStationIndex(programmeCurrentStation?.Station) - 1;
 
-		if(isCurrentProgrammeStationIndexWithinBounds(indexOfPreviousStation)) programmeCurrentStation = programmeStations[indexOfPreviousStation];
+		if(isCurrentProgrammeStationIndexWithinBounds(indexOfPreviousStation)) {
+			programmeCurrentStation = programmeStations[indexOfPreviousStation];
+		}
+
+		if(playAnnouncementOnProgrammeStationChange === true && programmeCurrentStation?.['On Approach']) {
+			programmeOnApproach();
+		}
 	}
 
 	// AUTO-SELECT THE NEXT STATION (RELATIVE TO THE CURRENT STATION)
@@ -269,7 +280,13 @@
 		// FIND INDEX OF CURRENT STATION BY NAME, THEN ADD 1 TO THE RETURNED VALUE
 		let indexOfNextStation = programmeStationIndex(programmeCurrentStation?.Station) + 1;
 
-		if(isCurrentProgrammeStationIndexWithinBounds(indexOfNextStation)) programmeCurrentStation = programmeStations[indexOfNextStation];
+		if(isCurrentProgrammeStationIndexWithinBounds(indexOfNextStation)) {
+			programmeCurrentStation = programmeStations[indexOfNextStation];
+		}
+
+		if(playAnnouncementOnProgrammeStationChange === true && programmeCurrentStation?.['On Approach']) {
+			programmeOnApproach();
+		}
 	}
 
 	/* GET INDEX OF STATION BY NAME */
@@ -438,7 +455,8 @@
 							</div>
 						{/if}
 					</div>
-					<div class="my-2 flex gap-4">
+					<div class="my-2 flex flex-wrap gap-4">
+						<Button on:click="{programmeGoToPreviousStation}" disabled="{!programmeCurrentStation || !isCurrentProgrammeStationIndexWithinBounds(programmeStationIndex(programmeCurrentStation?.Station) - 1)}"><div class="size-[20px]"><IoIosArrowBack /></div>Go to Previous Station</Button>
 						<Button
 							on:click="{programmeOnApproach}"
 							disabled="{!programmeCurrentStation || !programmeCurrentStation['On Approach']}"
@@ -454,8 +472,10 @@
 							disabled="{!programmeCurrentStation || !programmeCurrentStation.Terminating}"
 							>Terminating</Button
 						>
-						<Button on:click="{programmeGoToPreviousStation}" disabled="{!programmeCurrentStation || !isCurrentProgrammeStationIndexWithinBounds(programmeStationIndex(programmeCurrentStation?.Station) - 1)}">Go to Previous Station</Button>
-						<Button on:click="{programmeGoToNextStation}" disabled="{!programmeCurrentStation || !isCurrentProgrammeStationIndexWithinBounds(programmeStationIndex(programmeCurrentStation?.Station) + 1)}">Go to Next Station</Button>
+						<Button on:click="{programmeGoToNextStation}" disabled="{!programmeCurrentStation || !isCurrentProgrammeStationIndexWithinBounds(programmeStationIndex(programmeCurrentStation?.Station) + 1)}">Go to Next Station<div class="size-[20px]"><IoIosArrowForward /></div></Button>
+					</div>
+					<div class='my-2 flex flex-column'>
+						<Checkbox bind:checked="{playAnnouncementOnProgrammeStationChange}">Play announcement when skipping to station</Checkbox>
 					</div>
 					<div class="flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black"></div>
 				</div>
