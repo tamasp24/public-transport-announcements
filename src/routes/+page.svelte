@@ -7,8 +7,8 @@
 
 	// UI COMPONENTS
 	import { Button, Input, Range, Select, Checkbox } from 'flowbite-svelte';
-	
-	// ICONS REFERENCE: 
+
+	// ICONS REFERENCE:
 	import IoIosPlay from 'svelte-icons/io/IoIosPlay.svelte';
 	import IoMdSquare from 'svelte-icons/io/IoMdSquare.svelte';
 	import IoIosAdd from 'svelte-icons/io/IoIosAdd.svelte';
@@ -47,18 +47,21 @@
 	});
 
 	let announcementPacks = $derived.by(() => {
-		if($filesQuery.isSuccess) return processFileList($filesQuery.data);
-		else return []
+		if ($filesQuery.isSuccess) return processFileList($filesQuery.data);
+		else return [];
 	});
 	let programmes: Programme[] = $derived.by(() => {
-		if($programmesQuery.isSuccess) return Papa.parse($programmesQuery.data, { header: true, skipEmptyLines: true }).data;
+		if ($programmesQuery.isSuccess)
+			return Papa.parse($programmesQuery.data, { header: true, skipEmptyLines: true }).data;
 		else return [];
 	});
 	let selectedProgramme: string = $state('');
 	let queue: string[] = $state([]);
 	let programmeRouteList: string[] = $derived([...new Set(programmes.map((p) => p.Route))]);
 	let programmeQueue: string[] = $state([]);
-	let programmeStations: Programme[] = $derived(programmes.filter((p) => p.Route === selectedProgramme));
+	let programmeStations: Programme[] = $derived(
+		programmes.filter((p) => p.Route === selectedProgramme)
+	);
 	let programmeCurrentStation: Programme | null = $state(null);
 	let playAnnouncementOnProgrammeStationChange: boolean = $state(false);
 	let playbackType: 'normal' | 'programme' = $state('normal');
@@ -66,11 +69,14 @@
 	let previewAudio = new Audio();
 	let playbackVolume: number = $state(0.3);
 	let search: string = $state('');
-	let fileList: string[] = $derived.by(() =>{
-		if(announcementPacks.length > 0) return announcementPacks.filter((p) => p.name === selectedPack)[0].files;
+	let fileList: string[] = $derived.by(() => {
+		if (announcementPacks.length > 0)
+			return announcementPacks.filter((p) => p.name === selectedPack)[0].files;
 		else return [];
 	});
-	const fileListFilteredBySearchField = $derived(fileList.filter((f) => f.toLowerCase().includes(search.toLowerCase())).sort());
+	const fileListFilteredBySearchField = $derived(
+		fileList.filter((f) => f.toLowerCase().includes(search.toLowerCase())).sort()
+	);
 	let currentlyPlayingFile: string = $state('');
 	let selectedPack: string = $state('MTA');
 	let selectedPhrase: string = $state('');
@@ -81,10 +87,11 @@
 		FOR EASIER FUTURE MANAGEMENT */
 		announcementAudio.volume = previewAudio.volume = playbackVolume;
 
-		if(selectedProgramme) {
+		/* AUTO-SELECT FIRST STATION ON ROUTE SELECTION */
+		if (selectedProgramme) {
 			programmeCurrentStation = programmeStations[0];
 		}
-	})
+	});
 
 	const playAudio = (filePath: string) => {
 		announcementAudio.src = `${filePath}`;
@@ -270,38 +277,44 @@
 		// FIND INDEX OF CURRENT STATION BY NAME, THEN SUBTRACT 1 FROM THE RETURNED VALUE
 		let indexOfPreviousStation = programmeStationIndex(programmeCurrentStation?.Station) - 1;
 
-		if(isCurrentProgrammeStationIndexWithinBounds(indexOfPreviousStation)) {
+		if (isCurrentProgrammeStationIndexWithinBounds(indexOfPreviousStation)) {
 			programmeCurrentStation = programmeStations[indexOfPreviousStation];
 		}
 
-		if(playAnnouncementOnProgrammeStationChange === true && programmeCurrentStation?.['On Approach']) {
+		if (
+			playAnnouncementOnProgrammeStationChange === true &&
+			programmeCurrentStation?.['On Approach']
+		) {
 			programmeOnApproach();
 		}
-	}
+	};
 
 	// AUTO-SELECT THE NEXT STATION (RELATIVE TO THE CURRENT STATION)
 	const programmeGoToNextStation = () => {
 		// FIND INDEX OF CURRENT STATION BY NAME, THEN ADD 1 TO THE RETURNED VALUE
 		let indexOfNextStation = programmeStationIndex(programmeCurrentStation?.Station) + 1;
 
-		if(isCurrentProgrammeStationIndexWithinBounds(indexOfNextStation)) {
+		if (isCurrentProgrammeStationIndexWithinBounds(indexOfNextStation)) {
 			programmeCurrentStation = programmeStations[indexOfNextStation];
 		}
 
-		if(playAnnouncementOnProgrammeStationChange === true && programmeCurrentStation?.['On Approach']) {
+		if (
+			playAnnouncementOnProgrammeStationChange === true &&
+			programmeCurrentStation?.['On Approach']
+		) {
 			programmeOnApproach();
 		}
-	}
+	};
 
 	/* GET INDEX OF STATION BY NAME */
 	const programmeStationIndex = (stationName: string): number => {
-		return programmeStations.map(s => s.Station).indexOf(stationName);
-	}
+		return programmeStations.map((s) => s.Station).indexOf(stationName);
+	};
 
 	const isCurrentProgrammeStationIndexWithinBounds = (currentStationIndex: number): boolean => {
-		if(currentStationIndex >= 0 && currentStationIndex < programmeStations.length) return true;
+		if (currentStationIndex >= 0 && currentStationIndex < programmeStations.length) return true;
 		else return false;
-	}
+	};
 </script>
 
 <div class="h-full p-5">
@@ -312,13 +325,13 @@
 				class="flex h-[95%] w-[300px] flex-col gap-1 overflow-y-auto overflow-x-hidden rounded-lg bg-gray-100 p-1"
 			>
 				<Select
-					items="{announcementPacks.map((p) => ({
+					items={announcementPacks.map((p) => ({
 						name: `${p.name} (${p.files.length} phrases)`,
 						value: p.name
-					}))}"
-					bind:value="{selectedPack}"
+					}))}
+					bind:value={selectedPack}
 				/>
-				<Input type="text" class="sticky top-0" bind:value="{search}" placeholder="Search..." />
+				<Input type="text" class="sticky top-0" bind:value={search} placeholder="Search..." />
 				{#if $filesQuery.isFetching}
 					<span>Loading...</span>
 				{:else if fileList.length > 0}
@@ -326,7 +339,7 @@
 						{@const fileName = file.split('/').pop().replace('.wav', '')}
 						{@const directParentDir = file.split('/').slice(-2)[0]}
 						<div class="flex items-center justify-between gap-2 rounded-lg bg-gray-700 p-1">
-							<Button class="h-full" size="xs" on:click="{() => playPreview(`${file}`)}"
+							<Button class="h-full" size="xs" on:click={() => playPreview(`${file}`)}
 								><div class="size-[20px]"><IoIosPlay /></div></Button
 							>
 							<div class="flex flex-col align-middle">
@@ -334,7 +347,7 @@
 								<small>{directParentDir}</small>
 							</div>
 							{#if !selectedPhrase}
-								<Button class="h-full" color="green" size="xs" on:click="{() => addToQueue(file)}"
+								<Button class="h-full" color="green" size="xs" on:click={() => addToQueue(file)}
 									><div class="size-[20px]"><IoIosAdd /></div></Button
 								>
 							{:else}
@@ -342,7 +355,7 @@
 									class="h-full"
 									color="green"
 									size="xs"
-									on:click="{replaceSelectedPhrase(file)}"
+									on:click={replaceSelectedPhrase(file)}
 									><div class="size-[20px]"><IoIosRepeat /></div></Button
 								>
 							{/if}
@@ -358,11 +371,10 @@
 					{#if queue.length > 0}
 						{#each queue as file, index}
 							{@const fileName = file.split('/').pop().replace('.wav', '')}
-							<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
 							{#if queue.length > 0 && announcementAudio.paused && index !== selectedInsertIndex}
 								<div
 									class="h-[25px] w-[10px] cursor-pointer hover:bg-gray-400"
-									on:click="{() => (selectedInsertIndex = index)}"
+									onclick={() => (selectedInsertIndex = index)}
 								></div>
 							{:else if index === selectedInsertIndex}
 								<div
@@ -373,8 +385,7 @@
 									</div>
 								</div>
 							{/if}
-							<!--svelte-ignore a11y-no-static-element-interactions a11y-click-events-have-key-events -->
-							<span on:click="{() => (selectedPhrase = file)}" class="mx-1 cursor-pointer">
+							<span onclick={() => (selectedPhrase = file)} class="mx-1 cursor-pointer">
 								{#if currentlyPlayingFile === file}
 									<b class="bg-sky-300">{fileName}</b>
 								{:else if selectedPhrase === file}
@@ -389,8 +400,8 @@
 					{/if}
 				</div>
 				{#if selectedPhrase || selectedInsertIndex}
-					<Button color="red" on:click="{removeSelection}" outline>Deselect</Button>
-					<Button color="red" on:click="{deleteSelectedPhrase}" disabled="{!selectedPhrase}"
+					<Button color="red" on:click={removeSelection} outline>Deselect</Button>
+					<Button color="red" on:click={deleteSelectedPhrase} disabled={!selectedPhrase}
 						>Remove Selected Phrase</Button
 					>
 				{:else}
@@ -398,28 +409,28 @@
 				{/if}
 				<div class="my-4 flex flex-col">
 					<h4 class="my-2 font-bold">Playback volume: {(playbackVolume * 100).toFixed(0)}%</h4>
-					<Range min="0" max="1" step="0.01" bind:value="{playbackVolume}" />
+					<Range min="0" max="1" step="0.01" bind:value={playbackVolume} />
 				</div>
 				{#if !currentlyPlayingFile || announcementAudio.paused}
-					<Button on:click="{playQueue}" disabled="{queue.length === 0}"
+					<Button on:click={playQueue} disabled={queue.length === 0}
 						><div class="size-[20px]"><IoIosPlay /></div>
 						Play Announcement</Button
 					>
 				{:else}
-					<Button on:click="{stopPlayback}"
+					<Button on:click={stopPlayback}
 						><div class="size-[20px]"><IoMdSquare /></div>
 						Stop Playback</Button
 					>
 				{/if}
 				<Button
 					color="red"
-					on:click="{clearQueue}"
-					disabled="{queue.length === 0 || !announcementAudio.paused}"
+					on:click={clearQueue}
+					disabled={queue.length === 0 || !announcementAudio.paused}
 					outline
 					><div class="size-[20px]"><IoIosClose /></div>
 					Clear Queue</Button
 				>
-				<Button color="purple" on:click="{concatenateAudio}" disabled="{queue.length === 0}"
+				<Button color="purple" on:click={concatenateAudio} disabled={queue.length === 0}
 					><div class="size-[20px]"><IoMdDownload /></div>
 					Merge & Save</Button
 				>
@@ -427,59 +438,75 @@
 				<div class="mt-20">
 					<div class="flex gap-4">
 						<div class="flex flex-col">
-							<!-- svelte-ignore a11y-label-has-associated-control -->
 							<label>
 								<span>
 									<b>Route</b>
 								</span>
 								<Select
-									items="{programmeRouteList.sort().map((p) => ({
+									items={programmeRouteList.sort().map((p) => ({
 										name: `${p}`,
 										value: p
-									}))}"
-									bind:value="{selectedProgramme}"
+									}))}
+									bind:value={selectedProgramme}
 								/>
 							</label>
 						</div>
 						{#if programmeStations.length > 0}
 							<div class="flex flex-col">
-								<!-- svelte-ignore a11y-label-has-associated-control -->
 								<label>
 									<span>
 										<b>Station</b>
 									</span>
 									<Select
-										items="{programmeStations.map((s) => ({
+										items={programmeStations.map((s) => ({
 											name: `${s.Station}`,
 											value: s
-										}))}"
-										bind:value="{programmeCurrentStation}"
+										}))}
+										bind:value={programmeCurrentStation}
 									/>
 								</label>
 							</div>
 						{/if}
 					</div>
 					<div class="my-2 flex flex-wrap gap-4">
-						<Button on:click="{programmeGoToPreviousStation}" disabled="{!programmeCurrentStation || !isCurrentProgrammeStationIndexWithinBounds(programmeStationIndex(programmeCurrentStation?.Station) - 1)}"><div class="size-[20px]"><IoIosArrowBack /></div>Go to Previous Station</Button>
 						<Button
-							on:click="{programmeOnApproach}"
-							disabled="{!programmeCurrentStation || !programmeCurrentStation['On Approach']}"
+							on:click={programmeGoToPreviousStation}
+							disabled={!programmeCurrentStation ||
+								!isCurrentProgrammeStationIndexWithinBounds(
+									programmeStationIndex(programmeCurrentStation?.Station) - 1
+								)}
+							><div class="size-[20px]"><IoIosArrowBack /></div>
+							Go to Previous Station</Button
+						>
+						<Button
+							on:click={programmeOnApproach}
+							disabled={!programmeCurrentStation || !programmeCurrentStation['On Approach']}
 							>On Approach</Button
 						>
 						<Button
-							on:click="{programmeAtStation}"
-							disabled="{!programmeCurrentStation || !programmeCurrentStation['At Station']}"
+							on:click={programmeAtStation}
+							disabled={!programmeCurrentStation || !programmeCurrentStation['At Station']}
 							>At Station</Button
 						>
 						<Button
-							on:click="{programmeTerminating}"
-							disabled="{!programmeCurrentStation || !programmeCurrentStation.Terminating}"
+							on:click={programmeTerminating}
+							disabled={!programmeCurrentStation || !programmeCurrentStation.Terminating}
 							>Terminating</Button
 						>
-						<Button on:click="{programmeGoToNextStation}" disabled="{!programmeCurrentStation || !isCurrentProgrammeStationIndexWithinBounds(programmeStationIndex(programmeCurrentStation?.Station) + 1)}">Go to Next Station<div class="size-[20px]"><IoIosArrowForward /></div></Button>
+						<Button
+							on:click={programmeGoToNextStation}
+							disabled={!programmeCurrentStation ||
+								!isCurrentProgrammeStationIndexWithinBounds(
+									programmeStationIndex(programmeCurrentStation?.Station) + 1
+								)}
+							>Go to Next Station
+							<div class="size-[20px]"><IoIosArrowForward /></div></Button
+						>
 					</div>
-					<div class='my-2 flex flex-column'>
-						<Checkbox bind:checked="{playAnnouncementOnProgrammeStationChange}">Play announcement when skipping to station</Checkbox>
+					<div class="flex-column my-2 flex">
+						<Checkbox bind:checked={playAnnouncementOnProgrammeStationChange}
+							>Play announcement when skipping to station</Checkbox
+						>
 					</div>
 					<div class="flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black"></div>
 				</div>
