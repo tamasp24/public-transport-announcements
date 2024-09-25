@@ -259,21 +259,26 @@
 	// AUTO-SELECT THE PREVIOUS STATION (RELATIVE TO THE CURRENT STATION)
 	const programmeGoToPreviousStation = () => {
 		// FIND INDEX OF CURRENT STATION BY NAME, THEN SUBTRACT 1 FROM THE RETURNED VALUE
-		let indexOfPreviousStation = programmeStations.map(s => s.Station).indexOf(programmeCurrentStation?.Station) - 1;
+		let indexOfPreviousStation = programmeStationIndex(programmeCurrentStation?.Station) - 1;
 
-		if(isCurrentProgrammeStationWithinBounds(indexOfPreviousStation)) programmeCurrentStation = programmeStations[indexOfPreviousStation];
+		if(isCurrentProgrammeStationIndexWithinBounds(indexOfPreviousStation)) programmeCurrentStation = programmeStations[indexOfPreviousStation];
 	}
 
 	// AUTO-SELECT THE NEXT STATION (RELATIVE TO THE CURRENT STATION)
 	const programmeGoToNextStation = () => {
 		// FIND INDEX OF CURRENT STATION BY NAME, THEN ADD 1 TO THE RETURNED VALUE
-		let indexOfNextStation = programmeStations.map(s => s.Station).indexOf(programmeCurrentStation?.Station) + 1;
+		let indexOfNextStation = programmeStationIndex(programmeCurrentStation?.Station) + 1;
 
-		if(isCurrentProgrammeStationWithinBounds(indexOfNextStation)) programmeCurrentStation = programmeStations[indexOfNextStation];
+		if(isCurrentProgrammeStationIndexWithinBounds(indexOfNextStation)) programmeCurrentStation = programmeStations[indexOfNextStation];
 	}
 
-	const isCurrentProgrammeStationWithinBounds = (currentStationIndex: number): boolean => {
-		if(currentStationIndex >= 0 || currentStationIndex <= programmeStations.length) return true;
+	/* GET INDEX OF STATION BY NAME */
+	const programmeStationIndex = (stationName: string): number => {
+		return programmeStations.map(s => s.Station).indexOf(stationName);
+	}
+
+	const isCurrentProgrammeStationIndexWithinBounds = (currentStationIndex: number): boolean => {
+		if(currentStationIndex >= 0 && currentStationIndex < programmeStations.length) return true;
 		else return false;
 	}
 </script>
@@ -449,8 +454,8 @@
 							disabled="{!programmeCurrentStation || !programmeCurrentStation.Terminating}"
 							>Terminating</Button
 						>
-						<Button on:click="{programmeGoToPreviousStation}" disabled="{!programmeCurrentStation}">Go to Previous Station</Button>
-						<Button on:click="{programmeGoToNextStation}" disabled="{!programmeCurrentStation}">Go to Next Station</Button>
+						<Button on:click="{programmeGoToPreviousStation}" disabled="{!programmeCurrentStation || !isCurrentProgrammeStationIndexWithinBounds(programmeStationIndex(programmeCurrentStation?.Station) - 1)}">Go to Previous Station</Button>
+						<Button on:click="{programmeGoToNextStation}" disabled="{!programmeCurrentStation || !isCurrentProgrammeStationIndexWithinBounds(programmeStationIndex(programmeCurrentStation?.Station) + 1)}">Go to Next Station</Button>
 					</div>
 					<div class="flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black"></div>
 				</div>
