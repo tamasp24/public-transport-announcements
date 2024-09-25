@@ -342,8 +342,8 @@
 							<Button class="h-full" size="xs" on:click={() => playPreview(`${file}`)}
 								><div class="size-[20px]"><IoIosPlay /></div></Button
 							>
-							<div class="flex flex-col align-middle">
-								<span class="text-center">{fileName}</span>
+							<div class="flex flex-col text-center align-middle">
+								<span>{fileName}</span>
 								<small>{directParentDir}</small>
 							</div>
 							{#if !selectedPhrase}
@@ -505,7 +505,7 @@
 					</div>
 					<div class="flex-column my-2 flex">
 						<Checkbox bind:checked={playAnnouncementOnProgrammeStationChange}
-							>Play announcement when skipping to station</Checkbox
+							>Play On Approach announcement when skipping to station</Checkbox
 						>
 					</div>
 					<div class="flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black"></div>
