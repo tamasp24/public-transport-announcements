@@ -9,5 +9,7 @@
 	"javascript.preferences.quoteStyle": "single",
 	"typescript.preferences.quoteStyle": "single",
 	"html.completion.attributeDefaultValue": "singlequotes",
-	"html.autoCreateQuotes": true
+	"html.autoCreateQuotes": true,
+	"editor.defaultFormatter": "svelte.svelte-vscode",
+	"editor.formatOnSave": true
 }
