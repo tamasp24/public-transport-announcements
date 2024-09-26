@@ -1,23 +1,20 @@
 <script lang="ts">
-	import axios from 'axios';
 	import { createQuery } from '@tanstack/svelte-query';
+	import axios from 'axios';
 	import Crunker from 'crunker';
-
 	// UI COMPONENTS
 	import { Button, Range } from 'flowbite-svelte';
-
 	// ICONS REFERENCE: https://icones.js.org/collection/ion
-	import IoIosPlay from '~icons/ion/ios-play';
-	import IoMdSquare from '~icons/ion/md-square';
 	import IoIosClose from '~icons/ion/ios-close';
-	import IoMdDownload from '~icons/ion/md-download';
+	import IoIosPlay from '~icons/ion/ios-play';
 	import MdSubdirectoryArrowLeft from '~icons/ion/ios-return-left';
+	import IoMdDownload from '~icons/ion/md-download';
+	import IoMdSquare from '~icons/ion/md-square';
 
-	import type { Pack, Programme } from '$lib/types';
-
+	import type { Programme } from '$lib/types';
 	// SECTIONS
-	import Programmes from '$lib/Sections/Programmes.svelte';
 	import FileList from '$lib/Sections/FileList.svelte';
+	import Programmes from '$lib/Sections/Programmes.svelte';
 
 	const filePathRoot: string = '/audios/';
 	const programmesQuery = createQuery<string>({
@@ -182,7 +179,7 @@
 						<i>The queue is empty.</i>
 					{/if}
 				</div>
-				{#if selectedPhrase || selectedInsertIndex}
+				{#if selectedPhrase || selectedInsertIndex !== undefined}
 					<Button color="red" on:click={removeSelection} outline>Deselect</Button>
 					<Button color="red" on:click={deleteSelectedPhrase} disabled={!selectedPhrase}>
 						Remove Selected Phrase
