@@ -3,6 +3,19 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgb(100 116 139);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb::hover {
+	background: rgb(148 163 184);
+}
+
 a {
 	@apply text-sky-400;
 	@apply hover:underline;
