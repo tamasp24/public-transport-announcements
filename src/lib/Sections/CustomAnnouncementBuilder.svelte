@@ -108,7 +108,7 @@
 			<i>The queue is empty.</i>
 		{/if}
 	</div>
-	{#if selectedPhraseIndex || selectedInsertIndex !== undefined}
+	{#if selectedPhraseIndex !== undefined || selectedInsertIndex !== undefined}
 		<Button color="red" onclick={removeSelection} outline>Deselect</Button>
 		<Button color="red" onclick={deleteSelectedPhrase} disabled={selectedPhraseIndex === undefined}>
 			Remove Selected Phrase
