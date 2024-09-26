@@ -158,7 +158,7 @@
 	</div>
 	<div class="my-2 flex flex-wrap gap-4">
 		<Button
-			on:click={programmeGoToPreviousStation}
+			onclick={programmeGoToPreviousStation}
 			disabled={!programmeCurrentStation ||
 				!isCurrentProgrammeStationIndexWithinBounds(
 					programmeStationIndex(programmeCurrentStation?.Station) - 1
@@ -168,25 +168,25 @@
 			Go to Previous Station
 		</Button>
 		<Button
-			on:click={programmeOnApproach}
+			onclick={programmeOnApproach}
 			disabled={!programmeCurrentStation || !programmeCurrentStation['On Approach']}
 		>
 			On Approach
 		</Button>
 		<Button
-			on:click={programmeAtStation}
+			onclick={programmeAtStation}
 			disabled={!programmeCurrentStation || !programmeCurrentStation['At Station']}
 		>
 			At Station
 		</Button>
 		<Button
-			on:click={programmeTerminating}
+			onclick={programmeTerminating}
 			disabled={!programmeCurrentStation || !programmeCurrentStation.Terminating}
 		>
 			Terminating
 		</Button>
 		<Button
-			on:click={programmeGoToNextStation}
+			onclick={programmeGoToNextStation}
 			disabled={!programmeCurrentStation ||
 				!isCurrentProgrammeStationIndexWithinBounds(
 					programmeStationIndex(programmeCurrentStation?.Station) + 1
