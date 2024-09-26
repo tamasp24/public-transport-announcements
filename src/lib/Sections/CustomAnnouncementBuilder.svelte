@@ -82,7 +82,7 @@
 		{#if queue.length > 0}
 			{#each queue as file, index}
 				{@const fileName = file.split('/').pop()?.replace('.wav', '')}
-				{#if queue.length > 0 && isAnnouncementAudioPlaying && index !== selectedInsertIndex}
+				{#if queue.length > 0 && isAnnouncementAudioPlaying && index !== selectedInsertIndex && selectedPhraseIndex === undefined}
 					<div
 						class="h-[25px] w-[10px] cursor-pointer hover:bg-gray-400"
 						onclick={() => (selectedInsertIndex = index)}
