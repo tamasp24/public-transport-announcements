@@ -14,18 +14,18 @@
 
 	type Props = {
 		volume: number;
+		queue: string[];
 		filePathRoot: string;
-		selectedPhrase: string;
-		onAddToQueue: (filePath: string) => void;
-		onReplaceSelectedPhrase: (filePath: string) => void;
+		selectedPhraseIndex: number | undefined;
+		selectedInsertIndex: number | undefined;
 	};
 
 	let {
-		filePathRoot,
+		queue = $bindable([]),
 		volume = $bindable(),
-		selectedPhrase = $bindable(),
-		onAddToQueue,
-		onReplaceSelectedPhrase
+		filePathRoot,
+		selectedPhraseIndex = $bindable(),
+		selectedInsertIndex = $bindable()
 	}: Props = $props();
 
 	const filesQuery = createQuery<string>({
@@ -40,9 +40,9 @@
 		else return [];
 	});
 	let fileList: string[] = $derived.by(() => {
-		if (announcementPacks.length > 0)
+		if (announcementPacks.length > 0) {
 			return announcementPacks.filter((p) => p.name === selectedPack)[0].files;
-		else return [];
+		} else return [];
 	});
 	const fileListFilteredBySearchField: string[] = $derived(
 		fileList.filter((f) => f.toLowerCase().includes(search.toLowerCase())).sort()
@@ -51,6 +51,13 @@
 	$effect(() => {
 		previewAudio.volume = volume;
 	});
+
+	/* INSERT PHRASE AT SELECTED INDEX IF A PHRASE HAS BEEN CLICKED ON,
+	OTHERWISE APPEND IT TO THE END */
+	const addToQueue = (fileName: string) => {
+		queue = queue.toSpliced(selectedInsertIndex ?? queue.length, 0, fileName);
+		selectedInsertIndex = undefined;
+	};
 
 	const playPreview = (filePath: string) => {
 		previewAudio.src = filePath;
@@ -99,12 +106,10 @@
 		return packs;
 	};
 
-	const addToQueueHandler = (filePath: string) => {
-		onAddToQueue(filePath);
-	};
+	const replaceSelectedPhrase = (phraseToReplaceWith: string) => {
+		queue[selectedPhraseIndex as number] = phraseToReplaceWith;
 
-	const replaceSelectedPhraseHandler = (filePath: string) => {
-		onReplaceSelectedPhrase(filePath);
+		selectedPhraseIndex = undefined;
 	};
 </script>
 
@@ -128,15 +133,15 @@
 				{@const fileName = file.split('/').pop()?.replace('.wav', '')}
 				{@const directParentDir = file.split('/').slice(-2)[0]}
 				<div class="flex items-center justify-between gap-2 rounded-lg bg-gray-700 p-1">
-					<Button class="h-full" size="xs" on:click={() => playPreview(`${file}`)}>
+					<Button class="h-full" size="xs" onclick={() => playPreview(`${file}`)}>
 						<div class="text-[20px]"><IoIosPlay /></div>
 					</Button>
 					<div class="flex flex-col text-center align-middle">
 						<span>{fileName}</span>
 						<small>{directParentDir}</small>
 					</div>
-					{#if !selectedPhrase}
-						<Button class="h-full" color="green" size="xs" on:click={() => addToQueueHandler(file)}>
+					{#if selectedPhraseIndex === undefined}
+						<Button class="h-full" color="green" size="xs" onclick={() => addToQueue(file)}>
 							<div class="text-[20px]"><IoIosAdd /></div>
 						</Button>
 					{:else}
@@ -144,7 +149,7 @@
 							class="h-full"
 							color="green"
 							size="xs"
-							on:click={() => replaceSelectedPhraseHandler(file)}
+							onclick={() => replaceSelectedPhrase(file)}
 						>
 							<div class="text-[20px]"><IoIosRepeat /></div>
 						</Button>
