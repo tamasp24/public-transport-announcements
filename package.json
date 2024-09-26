@@ -43,9 +43,11 @@
 	"dependencies": {
 		"@tanstack/svelte-query": "^5.56.2",
 		"@types/papaparse": "^5.3.14",
+		"@types/uuid": "^10.0.0",
 		"axios": "^1.7.7",
 		"crunker": "^2.4.0",
 		"papaparse": "^5.4.1",
-		"svelte-icons": "^2.1.0"
+		"svelte-icons": "^2.1.0",
+		"uuid": "^10.0.0"
 	}
 }
