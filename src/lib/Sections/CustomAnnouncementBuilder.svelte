@@ -94,15 +94,19 @@
 						</div>
 					</div>
 				{/if}
-				<span onclick={() => selectPhrase(index)} class="mx-1 cursor-pointer">
-					{#if currentlyPlayingFile === file}
-						<b class="bg-sky-300">{fileName}</b>
-					{:else if selectedPhraseIndex === index}
-						<b class="bg-orange-300">{fileName}</b>
-					{:else}
-						{fileName}
-					{/if}
-				</span>
+				{#if selectedInsertIndex === undefined}
+					<span onclick={() => selectPhrase(index)} class="mx-1 cursor-pointer">
+						{#if currentlyPlayingFile === file}
+							<b class="bg-sky-300">{fileName}</b>
+						{:else if selectedPhraseIndex === index}
+							<b class="bg-orange-300">{fileName}</b>
+						{:else}
+							{fileName}
+						{/if}
+					</span>
+				{:else}
+					<span class="mx-1">{fileName}</span>
+				{/if}
 			{/each}
 		{:else}
 			<i>The queue is empty.</i>
