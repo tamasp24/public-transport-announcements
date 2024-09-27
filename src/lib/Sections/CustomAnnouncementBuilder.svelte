@@ -60,6 +60,8 @@
 	};
 
 	const selectPhrase = (phraseIndex: number) => {
+		if (currentlyPlayingFile) return;
+
 		selectedPhraseIndex = phraseIndex;
 	};
 
@@ -87,7 +89,7 @@
 	<div class="my-2 flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black">
 		{#if phrases.length > 0}
 			{#each phrases as phrase, index}
-				{#if phrase.length > 0 && isAnnouncementAudioPlaying && index !== selectedInsertIndex && selectedPhraseIndex === undefined}
+				{#if phrase.length > 0 && isAnnouncementAudioPlaying && index !== selectedInsertIndex && selectedPhraseIndex === undefined && !currentlyPlayingFile}
 					<div
 						class="h-[25px] w-[10px] cursor-pointer hover:bg-gray-400"
 						onclick={() => (selectedInsertIndex = index)}
@@ -119,9 +121,9 @@
 	</div>
 	{#if selectedPhraseIndex !== undefined || selectedInsertIndex !== undefined}
 		<Button color="red" onclick={removeSelection} outline>Deselect</Button>
-		<Button color="red" onclick={deleteSelectedPhrase} disabled={selectedPhraseIndex === undefined}>
-			Remove Selected Phrase
-		</Button>
+		{#if selectedPhraseIndex !== undefined}
+			<Button color="red" onclick={deleteSelectedPhrase}>Remove Selected Phrase</Button>
+		{/if}
 	{:else}
 		<i>Click on a phrase to replace it.</i>
 	{/if}
