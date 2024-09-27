@@ -34,6 +34,12 @@
 		onStopPlayback
 	}: Props = $props();
 
+	let phrases: string[] = $derived(
+		queue
+			.map((file) => file.split('/').pop()?.replace('.wav', ''))
+			.filter((phrase) => phrase !== undefined)
+	);
+
 	const concatenateAudio = () => {
 		let crunker = new Crunker();
 
@@ -79,10 +85,9 @@
 <div>
 	<h4 class="font-bold">Message</h4>
 	<div class="my-2 flex h-[100px] flex-wrap rounded-lg bg-white p-3 text-black">
-		{#if queue.length > 0}
-			{#each queue as file, index}
-				{@const fileName = file.split('/').pop()?.replace('.wav', '')}
-				{#if queue.length > 0 && isAnnouncementAudioPlaying && index !== selectedInsertIndex && selectedPhraseIndex === undefined}
+		{#if phrases.length > 0}
+			{#each phrases as phrase, index}
+				{#if phrase.length > 0 && isAnnouncementAudioPlaying && index !== selectedInsertIndex && selectedPhraseIndex === undefined}
 					<div
 						class="h-[25px] w-[10px] cursor-pointer hover:bg-gray-400"
 						onclick={() => (selectedInsertIndex = index)}
@@ -96,16 +101,16 @@
 				{/if}
 				{#if selectedInsertIndex === undefined}
 					<span onclick={() => selectPhrase(index)} class="mx-1 cursor-pointer">
-						{#if currentlyPlayingFile === file}
-							<b class="bg-sky-300">{fileName}</b>
+						{#if currentlyPlayingFile === queue[index]}
+							<b class="bg-sky-300">{phrase}</b>
 						{:else if selectedPhraseIndex === index}
-							<b class="bg-orange-300">{fileName}</b>
+							<b class="bg-orange-300">{phrase}</b>
 						{:else}
-							{fileName}
+							{phrase}
 						{/if}
 					</span>
 				{:else}
-					<span class="mx-1">{fileName}</span>
+					<span class="mx-1">{phrase}</span>
 				{/if}
 			{/each}
 		{:else}
