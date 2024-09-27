@@ -8,7 +8,7 @@
 	import Programmes from '$lib/Sections/Programmes.svelte';
 	import CustomAnnouncementBuilder from '$lib/Sections/CustomAnnouncementBuilder.svelte';
 
-	const filePathRoot: string = '/audios/';
+	const filePathRoot: string = '/audios';
 	const programmesQuery = createQuery<string>({
 		queryKey: ['programmes'],
 		queryFn: async () => await axios.get(`${filePathRoot}/Programmes.csv`).then((r) => r.data)
